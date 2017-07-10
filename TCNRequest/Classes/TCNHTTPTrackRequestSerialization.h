@@ -9,7 +9,8 @@
 #import "TCNHTTPRequestSerialization.h"
 
 /**
- body中添加通用参数并且使用JSON格式gzip压缩后使用POST发出
+ body中添加通用参数并且使用JSON格式gzip压缩后发出
+ 目前常用于广告相关的请求
  */
 @interface TCNHTTPTrackRequestSerialization : TCNHTTPRequestSerialization
 
