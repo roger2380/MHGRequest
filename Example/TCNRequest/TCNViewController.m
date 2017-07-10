@@ -90,10 +90,9 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
   AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", error);
   };
-  NSDictionary<NSString *, NSString *> *parameters = @{@"testKey" : @"testValue"};
-  [manager POST:@"http://mangswwa.1kxuswwn.moxzcsbi/api/home/getNewList"
-     parameters:parameters
-       progress:NULL
+  [manager POST:@"http://tcad.wedolook.com/api/sites"
+     parameters:nil
+       progress:nil
         success:successBlock
         failure:failureBlock];
 }
