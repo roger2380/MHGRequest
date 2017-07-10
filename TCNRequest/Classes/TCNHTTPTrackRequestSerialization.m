@@ -9,7 +9,7 @@
 #import "TCNHTTPTrackRequestSerialization.h"
 #import "TCNHTTPRequestSerialization+Protect.h"
 #import <TCNDeviceInfo/TCNDeviceInfo.h>
-#include <zlib.h>
+#import <TCNDataEncoding/NSData+TCNGzip.h>
 
 @implementation TCNHTTPTrackRequestSerialization
 
@@ -27,23 +27,7 @@
       [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
     NSData *body = [NSJSONSerialization dataWithJSONObject:[resultDic copy] options:0 error:nil];
-    
-    NSMutableData *compressedData = [NSMutableData dataWithLength:[body length]];
-    z_stream strm;
-    strm.next_in = (Bytef *)[body bytes];
-    strm.avail_in = (uInt)[body length];
-    strm.total_out = 0;
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
-    if (deflateInit(&strm, 7) == Z_OK){
-      strm.avail_out = (uInt)[body length];
-      strm.next_out = (Bytef *)[compressedData bytes];
-      deflate(&strm, Z_FINISH);
-      [compressedData setLength:strm.total_out];
-    }
-    deflateEnd(&strm);
-    request.HTTPBody = [NSData dataWithData:compressedData];
+    request.HTTPBody = [body gzip];
   } else {
     // TODO: 补全参数不是字典时的处理逻辑 这种情况比较少见
   }
