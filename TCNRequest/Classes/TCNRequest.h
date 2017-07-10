@@ -11,5 +11,6 @@
 #import <TCNRequest/TCNHTTPRequestSerialization.h>
 #import <TCNRequest/TCNRSARequestSerialization.h>
 #import <TCNRequest/TCNHTTPTrackRequestSerialization.h>
+#import <TCNRequest/TCNHTTPZhanqiTrackRequestSerialization.h>
 
 

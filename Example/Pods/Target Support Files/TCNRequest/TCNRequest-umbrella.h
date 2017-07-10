@@ -15,6 +15,7 @@
 #import "TCNHTTPRequestSerialization+Protect.h"
 #import "TCNHTTPRequestSerialization.h"
 #import "TCNHTTPTrackRequestSerialization.h"
+#import "TCNHTTPZhanqiTrackRequestSerialization.h"
 #import "TCNRequest.h"
 #import "TCNRequestError.h"
 #import "TCNRSARequestSerialization.h"
