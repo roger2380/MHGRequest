@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - RegexKitLite (4.0)
+  - TCNDataEncoding (0.0.1):
+    - TCNDataEncoding/ras-base64 (= 0.0.1)
+  - TCNDataEncoding/ras-base64 (0.0.1)
+  - TCNDeviceInfo (0.0.02):
+    - TCNDataEncoding (= 0.0.1)
+  - TCNRequest (0.0.01):
+    - AFNetworking (= 3.1.0)
+    - RegexKitLite (= 4.0)
+    - TCNDataEncoding (= 0.0.1)
+    - TCNDeviceInfo (= 0.0.02)
+
+DEPENDENCIES:
+  - TCNRequest (from `../`)
+
+EXTERNAL SOURCES:
+  TCNRequest:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  TCNDataEncoding: c73a9d9fa34d828da017eb78bde25a6aad4a0e4e
+  TCNDeviceInfo: bbb57cb50b59633f56e5f4c1ec0a5fbfdfa0d5a3
+  TCNRequest: 9a5630005c01bfd00e5e981f0c0582fb292e7e45
+
+PODFILE CHECKSUM: e2255d52a355647dcbab54db2364a82aeae4924f
+
+COCOAPODS: 1.2.1

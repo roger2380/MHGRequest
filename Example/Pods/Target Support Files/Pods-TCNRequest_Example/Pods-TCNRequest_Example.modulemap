@@ -1,0 +1,6 @@
+framework module Pods_TCNRequest_Example {
+  umbrella header "Pods-TCNRequest_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_TCNRequest_Tests {
+  umbrella header "Pods-TCNRequest_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

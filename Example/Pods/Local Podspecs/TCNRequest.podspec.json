@@ -1,0 +1,37 @@
+{
+  "name": "TCNRequest",
+  "version": "0.0.01",
+  "summary": "trueColor net base",
+  "description": "公司内部iOS开发使用的网络基础库,包括各种不同形式的网络请求.",
+  "homepage": "http://git.1kxun.com/ios/TCNRequest",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "周高举": "zgj@shtruecolor.com"
+  },
+  "source": {
+    "git": "ssh://git@git.1kxun.com:9922/ios/TCNRequest.git",
+    "tag": "0.0.01"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source_files": "TCNRequest/Classes/**/*",
+  "libraries": "z",
+  "dependencies": {
+    "TCNDeviceInfo": [
+      "= 0.0.02"
+    ],
+    "TCNDataEncoding": [
+      "= 0.0.1"
+    ],
+    "AFNetworking": [
+      "= 3.1.0"
+    ],
+    "RegexKitLite": [
+      "= 4.0"
+    ]
+  }
+}
