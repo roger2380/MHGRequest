@@ -1,6 +1,6 @@
 {
   "name": "TCNRequest",
-  "version": "0.0.01",
+  "version": "0.0.02",
   "summary": "trueColor net base",
   "description": "公司内部iOS开发使用的网络基础库,包括各种不同形式的网络请求.",
   "homepage": "http://git.1kxun.com/ios/TCNRequest",
@@ -13,25 +13,26 @@
   },
   "source": {
     "git": "ssh://git@git.1kxun.com:9922/ios/TCNRequest.git",
-    "tag": "0.0.01"
+    "tag": "0.0.02"
   },
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0"
   },
   "source_files": "TCNRequest/Classes/**/*",
+  "frameworks": "Foundation",
   "libraries": "z",
   "dependencies": {
     "TCNDeviceInfo": [
-      "= 0.0.02"
+      "~> 0.0.03"
     ],
     "TCNDataEncoding": [
-      "= 0.0.1"
+      "~> 0.0.2"
     ],
     "AFNetworking": [
-      "= 3.1.0"
+      "~> 3.1.0"
     ],
     "RegexKitLite": [
-      "= 4.0"
+      "~> 4.0"
     ]
   }
 }

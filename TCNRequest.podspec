@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'ssh://git@git.1kxun.com:9922/ios/TCNRequest.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'TCNRequest/Classes/**/*'
   
@@ -39,8 +39,8 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Foundation'
   s.libraries    = "z"
-  s.dependency 'TCNDeviceInfo', '= 0.0.02'
-  s.dependency 'TCNDataEncoding', '= 0.0.1'
-  s.dependency 'AFNetworking', '= 3.1.0'
-  s.dependency 'RegexKitLite', '= 4.0'
+  s.dependency 'TCNDeviceInfo', '~> 0.0.03'
+  s.dependency 'TCNDataEncoding', '~> 0.0.2'
+  s.dependency 'AFNetworking', '~> 3.1.0'
+  s.dependency 'RegexKitLite', '~> 4.0'
 end
