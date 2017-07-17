@@ -22,7 +22,9 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 - (void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  [self adTrackRequestTest];
+//  NSString *dataCenterConfigurationURL = @"http://tcconfig.1kxun.com/api/configurations/manga_web_lines_conf.json";
+//  [self loadAutoDataCenterManagerWithConfigurationURL:dataCenterConfigurationURL];
+  [self testAutoDataCenterManagerWithURL:@"http://manga.1kswwuxn.coswwm/api/home/getPosterList"];
 }
 
 - (void)qxBaseRequest {
@@ -83,15 +85,22 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 
 - (void)adTrackRequestTest {
   TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
-  manager.requestSerializer = [TCNHTTPTrackRequestSerialization serializer];
+  NSString *signKey = @"testSignKey"; // 服务器给的用于加密的SN验签
+  NSString *accessToken = @"testAccessToken"; // 当前登录用户的token,没有登录的时候传空
+  manager.requestSerializer = [TCNHTTPTrackRequestSerialization serializerWithSignKey:signKey accessToken:accessToken];
   AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     NSLog(@"%@", responseObject);
   };
   AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", error);
   };
+  
+  // 自定义的参数,不同的接口会有不同的参数,这里模拟上传广告统计并获取广告配置信息的接口
+  NSMutableDictionary<NSString *, NSString *> *parameters = [[NSMutableDictionary alloc]initWithCapacity:4];
+  [parameters setObject:@"5f0eaa7576c84b551e932c7f8e23b7e0e10e8fec" forKey:@"key"];
+  
   [manager POST:@"http://tcad.wedolook.com/api/sites"
-     parameters:nil
+     parameters:[parameters copy]
        progress:nil
         success:successBlock
         failure:failureBlock];
@@ -116,6 +125,53 @@ constructingBodyWithBlock:dataBlock
        progress:NULL
         success:successBlock
         failure:failureBlock];
+}
+
+- (void)loadAutoDataCenterManagerWithConfigurationURL:(NSString *)url {
+  [[TCNDataCenterManager defaultManager]loadConfigurationWithURL:url];
+}
+
+- (void)testAutoURL:(NSString *)url {
+  NSArray<NSString *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
+  NSLog(@"-------------------");
+  NSLog(@"原始地址:%@", url);
+  for (NSString *resultURL in resultURLs) {
+    NSLog(@"转换后的地址:%@", resultURL);
+  }
+  NSLog(@"-------------------");
+}
+
+- (void)testAutoDataCenterManagerWithURL:(NSString *)url {
+  TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
+  NSArray<NSString *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
+  AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSLog(@"-------------------");
+    NSLog(@"请求成功");
+    NSLog(@"原始地址:%@", url);
+    for (NSString *resultURL in resultURLs) {
+      NSLog(@"转换后的地址:%@", resultURL);
+    }
+    NSLog(@"请求成功的地址:%@", task.originalRequest);
+    NSLog(@"-------------------");
+  };
+  AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"-------------------");
+    NSLog(@"请求失败");
+    NSLog(@"原始地址:%@", url);
+    for (NSString *resultURL in resultURLs) {
+      NSLog(@"转换后的地址:%@", resultURL);
+    }
+    NSLog(@"请求失败的地址:%@", task.originalRequest);
+    NSLog(@"失败原因:%@", error);
+    NSLog(@"-------------------");
+  };
+  
+  NSURLSessionDataTask * task = [manager autoDataCenterGET:url
+                                                parameters:nil
+                                                   success:successBlock
+                                                   failure:failureBlock];
+  
+//  [task cancel];
 }
 
 @end

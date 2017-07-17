@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSString * const TCNRequestErrorDomain;
+
+// 出现本文件定义的错误时，仍然可以尝试通过
+// error.userInfo[TCNRequestErrorResponseDataErrorKey]
+// 的方式获取服务器返回的数据
 FOUNDATION_EXPORT NSString * const TCNRequestErrorResponseDataErrorKey;
 
 /**

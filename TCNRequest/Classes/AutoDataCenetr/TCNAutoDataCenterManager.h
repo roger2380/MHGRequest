@@ -8,17 +8,45 @@
 
 #import <AFNetworking/AFNetworking.h>
 
+typedef void(^TCNAFSuccessBlock)(NSURLSessionDataTask * _Nonnull, id _Nonnull);
+typedef void(^TCNAFFailureBlock)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull);
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TCNAutoDataCenterStopErrorType : NSObject
+
+@property (nonatomic, readonly, copy) NSString *errorDomain;
+@property (nonatomic, readonly, assign) NSInteger errorCode;
+
+- (nullable instancetype)initWithErrorDomain:(nullable NSString *)errorDomain errorCode:(NSInteger)errorCode;
+
+- (BOOL)isThisErrorType:(nullable NSError *)error;
+
+@end
+
 /**
  支持自动切换服务器的Manager
- 其中自动切换配置使用的是TCNDataCenterManager的defaultManager的配置
+ 其中自动切换配置使用的是[TCNDataCenterManager defaultManager]的配置
  */
 @interface TCNAutoDataCenterManager : AFHTTPSessionManager
 
 /**
- 可以忽视的错误类型。
- 调用方可以通过设置这个属性无视一些错误类型。
- 请求过程中出现了这些错误，Manager依然会视为请求成功，执行成功的block。
+ 停止切换线路的错误类型。
+ 调用方可以设置一些错误类型。
+ 出现这些错误时，将停止线路切换，执行错误处理的block。
  */
-@property (nullable, nonatomic, copy) NSSet<NSNumber *> *acceptableErrorCodes;
+@property (nullable, nonatomic, strong) NSArray<TCNAutoDataCenterStopErrorType *> *acceptableErrorType;
+
+
+- (nullable NSURLSessionDataTask *)autoDataCenterGET:(nonnull NSString *)URLString
+                                          parameters:(nullable id)parameters
+                                             success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable responseObject))success
+                                             failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+
+- (nullable NSURLSessionDataTask *)autoDataCenterPOST:(nonnull NSString *)URLString
+                                           parameters:(nullable id)parameters
+                                              success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                              failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
 @end
+NS_ASSUME_NONNULL_END

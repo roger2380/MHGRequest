@@ -10,81 +10,180 @@
 #import "TCNDataCenterManager.h"
 #import "TCNRequestError.h"
 
+@implementation TCNAutoDataCenterStopErrorType
+
+- (nullable instancetype)initWithErrorDomain:(nullable NSString *)errorDomain errorCode:(NSInteger)errorCode {
+  if (![errorDomain isKindOfClass:[NSString class]] || errorDomain.length == 0) {
+    return nil;
+  }
+  
+  if (self = [super init]) {
+    _errorDomain = errorDomain;
+    _errorCode = errorCode;
+  }
+  
+  return self;
+}
+
+- (BOOL)isThisErrorType:(nullable NSError *)error {
+  if (!error) {
+    return NO;
+  }
+  if (![error.domain isEqualToString:self.errorDomain]) {
+    return NO;
+  }
+  if (error.code != self.errorCode) {
+    return NO;
+  }
+  
+  return YES;
+}
+
+@end
+
+@interface AFHTTPSessionManager (TCNAutoDataCenterManager)
+
+NS_ASSUME_NONNULL_BEGIN
+- (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
+                                       URLString:(NSString *)URLString
+                                      parameters:(id)parameters
+                                  uploadProgress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
+                                downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
+                                         success:(void (^)(NSURLSessionDataTask *, id))success
+                                         failure:(void (^)(NSURLSessionDataTask *, NSError *))failure;
+NS_ASSUME_NONNULL_END
+
+@end
+
 @implementation TCNAutoDataCenterManager
 
-- (instancetype)initWithBaseURL:(nullable NSURL *)url; {
-  self = [super initWithBaseURL:url];
-  if (self) {
-    self.acceptableErrorCodes = [NSSet setWithObjects:@(TCNRequestErrorCodeBadServerResponse), nil];
+- (instancetype)initWithBaseURL:(NSURL *)url sessionConfiguration:(NSURLSessionConfiguration *)configuration {
+  if (self = [super initWithBaseURL:url sessionConfiguration:configuration]) {
+    TCNAutoDataCenterStopErrorType *type = [[TCNAutoDataCenterStopErrorType alloc]initWithErrorDomain:TCNRequestErrorDomain
+                                                                                errorCode:TCNRequestErrorCodeBadServerResponse];
+    self.acceptableErrorType = @[type];
   }
   return self;
 }
 
-- (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
-                               uploadProgress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgressBlock
-                             downloadProgress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgressBlock
-                            completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler {
+- (nullable NSURLSessionDataTask *)autoDataCenterGET:(nonnull NSString *)URLString
+                                          parameters:(nullable id)parameters
+                                             success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable responseObject))success
+                                             failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
+  return [self startAutoDataCenterWithHTTPMethod:@"GET"
+                                       URLString:URLString
+                                      parameters:parameters
+                                         success:success
+                                         failure:failure];
+}
+
+- (nullable NSURLSessionDataTask *)autoDataCenterPOST:(nonnull NSString *)URLString
+                                           parameters:(nullable id)parameters
+                                              success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                              failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
+  return [self startAutoDataCenterWithHTTPMethod:@"POST"
+                                       URLString:URLString
+                                      parameters:parameters
+                                         success:success
+                                         failure:failure];
+}
+
+- (NSURLSessionDataTask *)startAutoDataCenterWithHTTPMethod:(NSString *)method
+                                                  URLString:(NSString *)URLString
+                                                 parameters:(id)parameters
+                                                    success:(void (^)(NSURLSessionDataTask *, id))success
+                                                    failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+  SEL dataTaskWithHTTPMethodSEL = @selector(dataTaskWithHTTPMethod:URLString:parameters:uploadProgress:downloadProgress:success:failure:);
+  BOOL haveCreatedataTaskSEL = [self respondsToSelector:dataTaskWithHTTPMethodSEL];
+#ifdef DEBUG
+  NSAssert(haveCreatedataTaskSEL, @"AFHTTPSessionManager的内部实现发生变化,找不到创建dataTask的方法了");
+#else
+  if (!haveCreatedataTaskSEL) {
+    return nil;
+  }
+#endif
+  
   __block BOOL didHandleCompletion = NO;
-  NSArray *urls =  [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:[request.URL absoluteString]];
+  TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
+                                                                                           originalURL:URLString
+                                                                                            matchedURL:URLString];
+  NSArray<TCNDataCenterMatchedURLItem *> *items =  @[originItem];
+  items = [items arrayByAddingObjectsFromArray:[[TCNDataCenterManager defaultManager]
+                                                urlsMatchedWithOriginURL:URLString]];
+  
   __block NSInteger failedCount = 0;
-  void (^shouldHandlefailed)(NSURLResponse *response, NSError *error) = ^(NSURLResponse *response, NSError *error) {
+  
+  TCNAFFailureBlock shouldHandlefailed = ^(NSURLSessionDataTask * _Nullable task, NSError *error) {
     failedCount++;
-    if (failedCount == urls.count + 1) {
-      completionHandler(response, nil, error);
+    if (failedCount == items.count + 1) {
+      failure(task, error);
     }
   };
-  NSMutableArray *tasks = [[NSMutableArray alloc] init];
-  NSURLSessionDataTask *mainTask = [super dataTaskWithRequest:request
-                                               uploadProgress:nil
-                                             downloadProgress:nil
-                                            completionHandler:^(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error) {
-                                              if (didHandleCompletion) {
-                                                return;
-                                              }
-                                              if (!error
-                                                  || error.code == NSURLErrorCancelled
-                                                  || [self.acceptableErrorCodes containsObject:@(error.code)]) {
-                                                didHandleCompletion = YES;
-                                                if (error.code == NSURLErrorCancelled) {
-                                                  completionHandler(nil, nil, error);
-                                                } else {
-                                                  completionHandler(response, responseObject, error);
-                                                }
-                                                [self cancelTasks:tasks];
-                                              } else {
-                                                shouldHandlefailed(response, error);
-                                              }
-                                            }];
-  [tasks addObject:mainTask];
-  //请求其他线路
-  for (NSInteger i = 0; i < urls.count; i++) {
-    NSString *url = [urls objectAtIndex:i];
-    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (i + 1)*NSEC_PER_SEC);
-    dispatch_after(time, dispatch_get_main_queue(), ^{
-      if (didHandleCompletion) {
-        return;
+  
+  NSMutableArray<NSURLSessionDataTask *> *tasks = [[NSMutableArray alloc] init];
+  
+  TCNAFFailureBlock failBlock = ^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+    if (didHandleCompletion) {
+      return;
+    }
+    
+    BOOL shouldStop = error.code == NSURLErrorCancelled;
+    
+    if (!shouldStop) {
+      for (TCNAutoDataCenterStopErrorType *type in self.acceptableErrorType) {
+        if ([type isThisErrorType:error]) {
+          shouldStop = YES;
+          break;
+        }
       }
-      NSMutableURLRequest *subRequest = [request mutableCopy];
-      subRequest.URL = [NSURL URLWithString:url];
-      NSURLSessionDataTask *subTask = [super dataTaskWithRequest:subRequest
-                                                  uploadProgress:nil
-                                                downloadProgress:nil
-                                               completionHandler:^(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error) {
-                                                 if (didHandleCompletion) {
-                                                   return;
-                                                 }
-                                                 if (!error || [self.acceptableErrorCodes containsObject:@(error.code)]) {
-                                                   didHandleCompletion = YES;
-                                                   completionHandler(response, responseObject, error);
-                                                   [self cancelTasks:tasks];
-                                                 } else {
-                                                   shouldHandlefailed(response, error);
-                                                 }
-                                               }];
-      [tasks addObject:subTask];
+    }
+    
+    if (shouldStop) {
+      didHandleCompletion = YES;
+      failure(task, error);
+      [self cancelTasks:tasks];
+    } else {
+      shouldHandlefailed(task, error);
+    }
+  };
+
+  void (^startOneTask)(NSInteger) = ^void(NSInteger index) {
+    if (index < [items count]) {
+      TCNDataCenterMatchedURLItem *item = [items objectAtIndex:index];
+      
+      TCNAFSuccessBlock successBlock = ^(NSURLSessionDataTask * _Nonnull task, id _Nonnull responseObject) {
+        if (didHandleCompletion) {
+          return;
+        }
+        didHandleCompletion = YES;
+        [[TCNDataCenterManager defaultManager]requestSuccessWithItem:item];
+        success(task,responseObject);
+        [self cancelTasks:tasks];
+      };
+      
+      NSURLSessionDataTask *task = [self dataTaskWithHTTPMethod:method
+                                                      URLString:item.matchedURL
+                                                     parameters:parameters
+                                                 uploadProgress:nil
+                                               downloadProgress:nil
+                                                        success:successBlock
+                                                        failure:failBlock];
+      [task resume];
+      [tasks addObject:task];
+    }
+  };
+  
+  startOneTask(0);
+  
+  for (NSInteger i = 1; i < [items count]; i++) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      if (!didHandleCompletion) {
+        startOneTask(i);
+      }
     });
   }
-  return mainTask;
+  
+  return tasks.firstObject;
 }
 
 - (void)cancelTasks:(NSArray *)tasks {

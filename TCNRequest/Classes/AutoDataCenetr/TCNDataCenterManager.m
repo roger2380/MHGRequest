@@ -8,11 +8,11 @@
 
 #import "TCNDataCenterManager.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
-#import <RegexKitLite/RegexKitLite.h>
+#import "TCNDataCenter.h"
 
 @interface TCNDataCenterManager()
 
-@property (nonatomic, strong) NSMutableDictionary *urlRegexs;
+@property (nonatomic, strong) NSArray<TCNDataCenter *> *dataCenters;
 
 @end
 
@@ -35,31 +35,29 @@
   return self;
 }
 
-- (NSString *)cachePath {
-  NSString *documentsDirectory = nil;
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  documentsDirectory = [paths objectAtIndex:0];
-  return [documentsDirectory stringByAppendingString:@"/tcrequest.urlregexs"];
++ (NSString *)cachePath {
+  static NSString *documentsDirectory;
+  static dispatch_once_t documentsDirectoryOnceToken;
+  dispatch_once(&documentsDirectoryOnceToken, ^{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingString:@"/tcnrequest.dataCenters"];
+  });
+  return documentsDirectory;
 }
 
 - (void)loadConfigurationWithURL:(NSString *)url {
-  if (url.length == 0) {
-    return;
-  }
+  if (![url isKindOfClass:[NSString class]] || url.length == 0) return;
+  
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   [manager GET:url
     parameters:nil
       progress:NULL
        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         NSArray *array = nil;
-         array = [responseObject objectForKey:@"data"];
-         if ([array isKindOfClass:[NSArray class]]) {
-           for (NSDictionary *dict in array) {
-             NSString *lineName = [dict objectForKey:@"name"];
-             NSArray *rules = [dict objectForKey:@"rules"];
-             if (lineName && [rules isKindOfClass:[NSArray class]]) {
-               [self appendRegexs:rules forLineName:lineName];
-             }
+         NSArray *arr = [responseObject objectForKey:@"data"];
+         if ([arr isKindOfClass:[NSArray class]]) {
+           for (NSDictionary *dic in arr) {
+             [self addDataCenter:[[TCNDataCenter alloc] initWithDictionary:dic]];
            }
          }
          [self saveConfigurationToCache];
@@ -67,47 +65,54 @@
        failure:NULL];
 }
 
-- (void)appendRegexs:(NSArray *)regexs forLineName:(NSString *)lineName {
-  NSMutableDictionary *dict = [self.urlRegexs objectForKey:lineName];
-  if (!dict) {
-    dict = [[NSMutableDictionary alloc] init];
-    [self.urlRegexs setObject:dict forKey:lineName];
-  }
-  for (NSString *regex in regexs) {
-    NSArray *segments = [regex componentsSeparatedByString:@" "];
-    if ([segments count] == 2) {
-      [dict setObject:[segments objectAtIndex:1] forKey:[segments objectAtIndex:0]];
+- (void)addDataCenter:(TCNDataCenter *)dataCenter {
+  if (![dataCenter isKindOfClass:[TCNDataCenter class]]) return;
+  
+  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc] initWithCapacity:[self.dataCenters count] + 1];
+  for (TCNDataCenter *originDataCenter in self.dataCenters) {
+    if (![originDataCenter.name isEqualToString:dataCenter.name]) {
+      [resultArr addObject:originDataCenter];
     }
   }
+  [resultArr addObject:dataCenter];
+  self.dataCenters = [resultArr copy];
 }
 
 - (void)saveConfigurationToCache {
-  [self.urlRegexs writeToFile:[self cachePath] atomically:YES];
+  [NSKeyedArchiver archiveRootObject:self.dataCenters toFile:[[self class] cachePath]];
 }
 
 - (void)loadConfigurationFromCache {
-  NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:[self cachePath]];
-  self.urlRegexs = [[NSMutableDictionary alloc] init];
-  for (NSString *key in dict.allKeys) {
-    NSDictionary *value = [dict objectForKey:key];
-    NSMutableDictionary *mdict = [[NSMutableDictionary alloc] initWithDictionary:value];
-    [self.urlRegexs setObject:mdict forKey:key];
-  }
+  self.dataCenters = [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] cachePath]];
 }
 
-- (NSArray *)urlsMatchedWithOriginURL:(NSString *)originUrl {
-  NSMutableArray *results = [[NSMutableArray alloc] init];
-  for (NSString *lineName in self.urlRegexs.allKeys) {
-    NSDictionary *dict = [self.urlRegexs objectForKey:lineName];
-    for (NSString *search in dict.allKeys) {
-      NSString *replacement = [dict objectForKey:search];
-      NSString *result = [originUrl stringByReplacingOccurrencesOfRegex:search withString:replacement];
-      if (![result isEqualToString:originUrl]) {
-        [results addObject:result];
-      }
+- (NSArray<TCNDataCenterMatchedURLItem *> *)urlsMatchedWithOriginURL:(NSString *)originUrl {
+  NSMutableArray<TCNDataCenterMatchedURLItem *> *results = [[NSMutableArray alloc] init];
+  for (TCNDataCenter *dataCenetr in self.dataCenters) {
+    TCNDataCenterMatchedURLItem *item = [dataCenetr urlsMatchedWithOriginURL:originUrl];
+    if (item) {
+      [results addObject:item];
     }
   }
   return [results copy];
+}
+
+- (void)requestSuccessWithItem:(nonnull TCNDataCenterMatchedURLItem *)item {
+  if (self.dataCenters.count < 2) return;
+  if ([self.dataCenters.firstObject.name isEqualToString:item.dataCenterName]) return;
+  TCNDataCenter *preferentialDataCenter = nil;
+  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc]initWithArray:self.dataCenters];
+  for (TCNDataCenter *dataCenter in resultArr) {
+    if ([dataCenter.name isEqualToString:item.dataCenterName]) {
+      preferentialDataCenter = dataCenter;
+      break;
+    }
+  }
+  if (!preferentialDataCenter) return;
+  [resultArr removeObject:preferentialDataCenter];
+  [resultArr insertObject:preferentialDataCenter atIndex:0];
+  self.dataCenters = [resultArr copy];
+  [self saveConfigurationToCache];
 }
 
 @end
