@@ -22,8 +22,8 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 - (void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-//  NSString *dataCenterConfigurationURL = @"http://tcconfig.1kxun.com/api/configurations/manga_web_lines_conf.json";
-//  [self loadAutoDataCenterManagerWithConfigurationURL:dataCenterConfigurationURL];
+  NSString *dataCenterConfigurationURL = @"http://tcconfig.1kxun.com/api/configurations/manga_web_lines_conf.json";
+  [self loadAutoDataCenterManagerWithConfigurationURL:dataCenterConfigurationURL];
   [self testAutoDataCenterManagerWithURL:@"http://manga.1kswwuxn.coswwm/api/home/getPosterList"];
 }
 
@@ -131,25 +131,15 @@ constructingBodyWithBlock:dataBlock
   [[TCNDataCenterManager defaultManager]loadConfigurationWithURL:url];
 }
 
-- (void)testAutoURL:(NSString *)url {
-  NSArray<NSString *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
-  NSLog(@"-------------------");
-  NSLog(@"原始地址:%@", url);
-  for (NSString *resultURL in resultURLs) {
-    NSLog(@"转换后的地址:%@", resultURL);
-  }
-  NSLog(@"-------------------");
-}
-
 - (void)testAutoDataCenterManagerWithURL:(NSString *)url {
   TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
-  NSArray<NSString *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
+  NSArray<TCNDataCenterMatchedURLItem *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
   AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     NSLog(@"-------------------");
     NSLog(@"请求成功");
     NSLog(@"原始地址:%@", url);
-    for (NSString *resultURL in resultURLs) {
-      NSLog(@"转换后的地址:%@", resultURL);
+    for (TCNDataCenterMatchedURLItem *result in resultURLs) {
+      NSLog(@"转换后的地址:%@", result.matchedURL);
     }
     NSLog(@"请求成功的地址:%@", task.originalRequest);
     NSLog(@"-------------------");
@@ -158,8 +148,8 @@ constructingBodyWithBlock:dataBlock
     NSLog(@"-------------------");
     NSLog(@"请求失败");
     NSLog(@"原始地址:%@", url);
-    for (NSString *resultURL in resultURLs) {
-      NSLog(@"转换后的地址:%@", resultURL);
+    for (TCNDataCenterMatchedURLItem *result in resultURLs) {
+      NSLog(@"转换后的地址:%@", result.matchedURL);
     }
     NSLog(@"请求失败的地址:%@", task.originalRequest);
     NSLog(@"失败原因:%@", error);
