@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_END
   
   TCNAFFailureBlock shouldHandlefailed = ^(NSURLSessionDataTask * _Nullable task, NSError *error) {
     failedCount++;
-    if (failedCount == items.count + 1) {
+    if (failedCount == items.count) {
       failure(task, error);
     }
   };
