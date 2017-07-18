@@ -10,6 +10,9 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "TCNDataCenter.h"
 
+static NSString *TCNDataCenterManagerPriorityUserdefaultsKey = @"com.TCNRequest.DataCenterPriorityUserdefaultsKey";
+static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
+
 @interface TCNDataCenterManager()
 
 @property (nonatomic, strong) NSArray<TCNDataCenter *> *dataCenters;
@@ -41,7 +44,25 @@
   dispatch_once(&documentsDirectoryOnceToken, ^{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     documentsDirectory = [paths objectAtIndex:0];
-    documentsDirectory = [documentsDirectory stringByAppendingString:@"/tcnrequest.dataCenters"];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"tcnrequest"];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"dataCenters"];
+    NSFileManager* manager = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
+    
+    if (!isDirExist) {
+      BOOL success = [manager createDirectoryAtPath:documentsDirectory
+                        withIntermediateDirectories:YES
+                                         attributes:nil
+                                              error:nil];
+#if DEBUG
+      NSAssert(success, @"创建存放dataCenter数据文件夹失败");
+    }
+
+    else {
+      NSAssert(isDir, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
+#endif
+    }
   });
   return documentsDirectory;
 }
@@ -69,21 +90,69 @@
   if (![dataCenter isKindOfClass:[TCNDataCenter class]]) return;
   
   NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc] initWithCapacity:[self.dataCenters count] + 1];
-  for (TCNDataCenter *originDataCenter in self.dataCenters) {
+  NSInteger newDataCenterIndex = -1;
+  for (NSInteger i = 0; i < self.dataCenters.count; i++) {
+    TCNDataCenter *originDataCenter = [self.dataCenters objectAtIndex:i];
     if (![originDataCenter.name isEqualToString:dataCenter.name]) {
       [resultArr addObject:originDataCenter];
+    } else {
+      newDataCenterIndex = i;
     }
   }
-  [resultArr addObject:dataCenter];
+  if (newDataCenterIndex >= 0 && newDataCenterIndex < resultArr.count) {
+    [resultArr insertObject:dataCenter atIndex:newDataCenterIndex];
+  } else {
+    [resultArr addObject:dataCenter];
+  }
   self.dataCenters = [resultArr copy];
 }
 
 - (void)saveConfigurationToCache {
-  [NSKeyedArchiver archiveRootObject:self.dataCenters toFile:[[self class] cachePath]];
+  NSString *fileName, *path;
+  for (TCNDataCenter *dataCenter in self.dataCenters) {
+    fileName = [NSString stringWithFormat:@"%@.%@", dataCenter.name, TCNDataCenterSaveFileExtension];
+    path = [[[self class] cachePath] stringByAppendingPathComponent:fileName];
+    [NSKeyedArchiver archiveRootObject:dataCenter toFile:path];
+  }
+  [self saveDataCenterPriority];
+}
+
+- (void)saveDataCenterPriority {
+  NSMutableArray<NSString *> *dataCenterPriorityArr = [NSMutableArray arrayWithCapacity:[self.dataCenters count]];
+  for (TCNDataCenter *dataCenter in self.dataCenters) {
+    [dataCenterPriorityArr addObject:dataCenter.name];
+  }
+  [[NSUserDefaults standardUserDefaults]setObject:[dataCenterPriorityArr copy]
+                                           forKey:TCNDataCenterManagerPriorityUserdefaultsKey];
 }
 
 - (void)loadConfigurationFromCache {
-  self.dataCenters = [NSKeyedUnarchiver unarchiveObjectWithFile:[[self class] cachePath]];
+  NSFileManager* manager = [NSFileManager defaultManager];
+  NSString *folderPath = [[self class] cachePath];
+  if (![manager fileExistsAtPath:folderPath]) return;
+  NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+  NSMutableDictionary<NSString *, TCNDataCenter *> *allDataCenter = [[NSMutableDictionary alloc]init];
+  NSString* fileName;
+  while ((fileName = [childFilesEnumerator nextObject]) != nil) {
+    if (![[fileName pathExtension] isEqualToString:TCNDataCenterSaveFileExtension]) continue;
+    NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+    if (![manager fileExistsAtPath:fileAbsolutePath]) continue;
+    TCNDataCenter *dataCenter = [NSKeyedUnarchiver unarchiveObjectWithFile:fileAbsolutePath];
+    if (!dataCenter) continue;
+    [allDataCenter setObject:dataCenter forKey:dataCenter.name];
+  }
+  NSArray<NSString *> *dataCenterPriorityArr = [[NSUserDefaults standardUserDefaults]objectForKey:TCNDataCenterManagerPriorityUserdefaultsKey];
+  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc]initWithCapacity:allDataCenter.count];
+  for (NSString *dataCenterName in dataCenterPriorityArr) {
+    TCNDataCenter *dataCenter = [allDataCenter objectForKey:dataCenterName];
+    if (!dataCenter) continue;
+    [resultArr addObject:dataCenter];
+    [allDataCenter removeObjectForKey:dataCenterName];
+  }
+  for (TCNDataCenter *dataCenter in allDataCenter.allValues) {
+    [resultArr addObject:dataCenter];
+  }
+  self.dataCenters = [resultArr copy];
 }
 
 - (NSArray<TCNDataCenterMatchedURLItem *> *)urlsMatchedWithOriginURL:(NSString *)originUrl {
@@ -112,7 +181,7 @@
   [resultArr removeObject:preferentialDataCenter];
   [resultArr insertObject:preferentialDataCenter atIndex:0];
   self.dataCenters = [resultArr copy];
-  [self saveConfigurationToCache];
+  [self saveDataCenterPriority];
 }
 
 @end
