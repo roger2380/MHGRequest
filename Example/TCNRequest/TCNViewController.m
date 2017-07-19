@@ -15,6 +15,8 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 
 @interface TCNViewController ()
 
+@property (nonatomic, strong) UIButton *sendBtn;
+
 @end
 
 @implementation TCNViewController
@@ -22,8 +24,17 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 - (void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+  self.sendBtn = [[UIButton alloc]init];
+  self.sendBtn.frame = CGRectMake(50, 50, 50, 50);
+  [self.sendBtn setBackgroundColor:[UIColor redColor]];
+  [self.sendBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.sendBtn];
+  
   NSString *dataCenterConfigurationURL = @"http://tcconfig.1kxun.com/api/configurations/manga_web_lines_conf.json";
   [self loadAutoDataCenterManagerWithConfigurationURL:dataCenterConfigurationURL];
+}
+
+- (void)clickSendBtn {
   [self testAutoDataCenterManagerWithURL:@"http://manga.1kswwuxn.coswwm/api/home/getPosterList"];
 }
 
