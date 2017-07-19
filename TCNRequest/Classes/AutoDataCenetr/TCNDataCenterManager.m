@@ -81,33 +81,42 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
          if (![status isEqualToString:@"success"]) return;
          NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
          if (![arr isKindOfClass:[NSArray class]]) return;
-         for (NSDictionary *dic in arr) {
-           [self addDataCenter:[[TCNDataCenter alloc] initWithDictionary:dic]];
-         }
-         [self saveConfigurationToCache];
+         [self loadConfigurationWithArray:arr];
        }
        failure:NULL];
 }
 
-- (void)addDataCenter:(TCNDataCenter *)dataCenter {
-  if (![dataCenter isKindOfClass:[TCNDataCenter class]]) return;
+- (void)loadConfigurationWithArray:(NSArray<NSDictionary *> *)dataCenterConfigs {
+  if (![dataCenterConfigs isKindOfClass:[NSArray class]]) return;
+  if (dataCenterConfigs.count == 0) return;
   
-  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc] initWithCapacity:[self.dataCenters count] + 1];
-  NSInteger newDataCenterIndex = -1;
-  for (NSInteger i = 0; i < self.dataCenters.count; i++) {
-    TCNDataCenter *originDataCenter = [self.dataCenters objectAtIndex:i];
-    if (![originDataCenter.name isEqualToString:dataCenter.name]) {
-      [resultArr addObject:originDataCenter];
-    } else {
-      newDataCenterIndex = i;
+  NSMutableArray<TCNDataCenter *> *resultArray = [NSMutableArray arrayWithCapacity:dataCenterConfigs.count];
+  NSMutableArray<TCNDataCenter *> *newDataCenters = [NSMutableArray arrayWithCapacity:dataCenterConfigs.count];
+  for (NSDictionary *dataCenterConfig in dataCenterConfigs) {
+    TCNDataCenter *dataCenter = [[TCNDataCenter alloc]initWithDictionary:dataCenterConfig];
+    if (!dataCenter) continue;
+    [newDataCenters addObject:dataCenter];
+  }
+  
+  for (TCNDataCenter *oldDataCenter in self.dataCenters) {
+    TCNDataCenter *needRemoveNewDataCenter = nil;
+    for (TCNDataCenter *newDataCenter in newDataCenters) {
+      if ([oldDataCenter.name isEqualToString:newDataCenter.name]) {
+        [resultArray addObject:newDataCenter];
+        needRemoveNewDataCenter = newDataCenter;
+        break;
+      }
     }
+    if (!needRemoveNewDataCenter) continue;
+    [newDataCenters removeObject:needRemoveNewDataCenter];
   }
-  if (newDataCenterIndex >= 0 && newDataCenterIndex < resultArr.count) {
-    [resultArr insertObject:dataCenter atIndex:newDataCenterIndex];
-  } else {
-    [resultArr addObject:dataCenter];
+  
+  for (TCNDataCenter *newDataCenter in newDataCenters) {
+    [resultArray addObject:newDataCenter];
   }
-  self.dataCenters = [resultArr copy];
+  
+  self.dataCenters = [resultArray copy];
+  [self saveConfigurationToCache];
 }
 
 - (void)saveConfigurationToCache {
@@ -146,14 +155,16 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
   }
   NSArray<NSString *> *dataCenterPriorityArr = [[NSUserDefaults standardUserDefaults]objectForKey:TCNDataCenterManagerPriorityUserdefaultsKey];
   NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc]initWithCapacity:allDataCenter.count];
-  for (NSString *dataCenterName in dataCenterPriorityArr) {
-    TCNDataCenter *dataCenter = [allDataCenter objectForKey:dataCenterName];
-    if (!dataCenter) continue;
-    [resultArr addObject:dataCenter];
-    [allDataCenter removeObjectForKey:dataCenterName];
-  }
-  for (TCNDataCenter *dataCenter in allDataCenter.allValues) {
-    [resultArr addObject:dataCenter];
+  if ([dataCenterPriorityArr isKindOfClass:[NSArray class]] && dataCenterPriorityArr.count > 0) {
+    for (NSString *dataCenterName in dataCenterPriorityArr) {
+      TCNDataCenter *dataCenter = [allDataCenter objectForKey:dataCenterName];
+      if (!dataCenter) continue;
+      [resultArr addObject:dataCenter];
+    }
+  } else {
+    for (TCNDataCenter *dataCenter in allDataCenter.allValues) {
+      [resultArr addObject:dataCenter];
+    }
   }
   self.dataCenters = [resultArr copy];
 }
