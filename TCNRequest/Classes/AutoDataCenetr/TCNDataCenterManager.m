@@ -80,10 +80,9 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
          if (![status isKindOfClass:[NSString class]]) return;
          if (![status isEqualToString:@"success"]) return;
          NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
-         if ([arr isKindOfClass:[NSArray class]]) {
-           for (NSDictionary *dic in arr) {
-             [self addDataCenter:[[TCNDataCenter alloc] initWithDictionary:dic]];
-           }
+         if (![arr isKindOfClass:[NSArray class]]) return;
+         for (NSDictionary *dic in arr) {
+           [self addDataCenter:[[TCNDataCenter alloc] initWithDictionary:dic]];
          }
          [self saveConfigurationToCache];
        }
