@@ -90,6 +90,7 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
   if (![dataCenterConfigs isKindOfClass:[NSArray class]]) return;
   if (dataCenterConfigs.count == 0) return;
   
+  NSMutableSet<NSString *> *resultDataCenterNameSet = [[NSMutableSet alloc]initWithCapacity:dataCenterConfigs.count];
   NSMutableArray<TCNDataCenter *> *resultArray = [NSMutableArray arrayWithCapacity:dataCenterConfigs.count];
   NSMutableArray<TCNDataCenter *> *newDataCenters = [NSMutableArray arrayWithCapacity:dataCenterConfigs.count];
   for (NSDictionary *dataCenterConfig in dataCenterConfigs) {
@@ -102,7 +103,10 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
     TCNDataCenter *needRemoveNewDataCenter = nil;
     for (TCNDataCenter *newDataCenter in newDataCenters) {
       if ([oldDataCenter.name isEqualToString:newDataCenter.name]) {
-        [resultArray addObject:newDataCenter];
+        if (![resultDataCenterNameSet containsObject:newDataCenter.name]) {
+          [resultArray addObject:newDataCenter];
+          [resultDataCenterNameSet addObject:newDataCenter.name];
+        }
         needRemoveNewDataCenter = newDataCenter;
         break;
       }
@@ -112,7 +116,10 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
   }
   
   for (TCNDataCenter *newDataCenter in newDataCenters) {
-    [resultArray addObject:newDataCenter];
+    if (![resultDataCenterNameSet containsObject:newDataCenter.name]) {
+      [resultArray addObject:newDataCenter];
+      [resultDataCenterNameSet addObject:newDataCenter.name];
+    }
   }
   
   self.dataCenters = [resultArray copy];
