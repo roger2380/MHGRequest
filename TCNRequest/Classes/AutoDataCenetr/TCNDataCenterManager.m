@@ -168,6 +168,7 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
 
 - (void)requestSuccessWithItem:(nonnull TCNDataCenterMatchedURLItem *)item {
   if (self.dataCenters.count < 2) return;
+  if (![item.dataCenterName isKindOfClass:[NSString class]] || item.dataCenterName.length == 0) return;
   if ([self.dataCenters.firstObject.name isEqualToString:item.dataCenterName]) return;
   TCNDataCenter *preferentialDataCenter = nil;
   NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc]initWithArray:self.dataCenters];
