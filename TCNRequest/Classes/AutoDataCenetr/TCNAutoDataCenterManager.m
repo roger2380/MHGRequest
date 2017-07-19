@@ -107,9 +107,9 @@ NS_ASSUME_NONNULL_END
   TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
                                                                                            originalURL:URLString
                                                                                             matchedURL:URLString];
-  NSArray<TCNDataCenterMatchedURLItem *> *items =  @[originItem];
-  items = [items arrayByAddingObjectsFromArray:[[TCNDataCenterManager defaultManager]
-                                                urlsMatchedWithOriginURL:URLString]];
+  NSArray<TCNDataCenterMatchedURLItem *> *items =  [[NSArray alloc]initWithArray:[[TCNDataCenterManager defaultManager]
+                                                                                  urlsMatchedWithOriginURL:URLString]];
+  items = [items arrayByAddingObject:originItem];
   
   __block NSInteger failedCount = 0;
   
