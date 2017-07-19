@@ -57,18 +57,17 @@
 
 #pragma mark - Custom
 
-- (nullable TCNDataCenterMatchedURLItem *)urlsMatchedWithOriginURL:(nonnull NSString *)url {
+- (nullable TCNDataCenterMatchedURLItem *)urlsMatchedWithOriginURL:(nullable NSString *)url {
   if (![url isKindOfClass:[NSString class]]) return nil;
   NSString *resultURL = url;
   for (NSString *key in self.rules) {
     NSString *value = [self.rules objectForKey:key];
     resultURL = [url stringByReplacingOccurrencesOfRegex:key withString:value];
     if (![resultURL isEqualToString:url]) {
-      return [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:self.name originalURL:url matchedURL:resultURL];
+      break;
     }
   }
-  
-  return nil;
+  return [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:self.name originalURL:url matchedURL:resultURL];;
 }
 
 #pragma mark - NSCoding
