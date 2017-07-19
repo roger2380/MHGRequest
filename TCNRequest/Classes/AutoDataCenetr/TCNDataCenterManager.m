@@ -75,7 +75,11 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
     parameters:nil
       progress:NULL
        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         NSArray *arr = [responseObject objectForKey:@"data"];
+         if (![responseObject isKindOfClass:[NSDictionary class]]) return;
+         NSString *status = [responseObject objectForKey:@"status"];
+         if (![status isKindOfClass:[NSString class]]) return;
+         if (![status isEqualToString:@"success"]) return;
+         NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
          if ([arr isKindOfClass:[NSArray class]]) {
            for (NSDictionary *dic in arr) {
              [self addDataCenter:[[TCNDataCenter alloc] initWithDictionary:dic]];
