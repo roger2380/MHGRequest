@@ -8,8 +8,8 @@
 
 #import <AFNetworking/AFNetworking.h>
 
-typedef void(^TCNAFSuccessBlock)(NSURLSessionDataTask * _Nonnull, id _Nonnull);
-typedef void(^TCNAFFailureBlock)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull);
+typedef void(^TCNAutoDataCenterSuccessBlock)(id _Nonnull);
+typedef void(^TCNAutoDataCenterFailureBlock)(NSError * _Nonnull);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,13 +40,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSURLSessionDataTask *)autoDataCenterGET:(nonnull NSString *)URLString
                                           parameters:(nullable id)parameters
-                                             success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable responseObject))success
-                                             failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+                                             success:(nullable void (^)(id _Nullable responseObject))success
+                                             failure:(nullable void (^)(NSError *error))failure;
 
 - (nullable NSURLSessionDataTask *)autoDataCenterPOST:(nonnull NSString *)URLString
                                            parameters:(nullable id)parameters
-                                              success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                                              failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+                                              success:(nullable void (^)(id _Nullable responseObject))success
+                                              failure:(nullable void (^)(NSError *error))failure;
 
 @end
 NS_ASSUME_NONNULL_END

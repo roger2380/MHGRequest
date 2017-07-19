@@ -145,24 +145,22 @@ constructingBodyWithBlock:dataBlock
 - (void)testAutoDataCenterManagerWithURL:(NSString *)url {
   TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
   NSArray<TCNDataCenterMatchedURLItem *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
-  AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+  TCNAutoDataCenterSuccessBlock successBlock = ^void(id  _Nullable responseObject) {
     NSLog(@"-------------------");
     NSLog(@"请求成功");
     NSLog(@"原始地址:%@", url);
     for (TCNDataCenterMatchedURLItem *result in resultURLs) {
       NSLog(@"转换后的地址:%@", result.matchedURL);
     }
-    NSLog(@"请求成功的地址:%@", task.originalRequest);
     NSLog(@"-------------------");
   };
-  AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+  TCNAutoDataCenterFailureBlock failureBlock = ^void(NSError * _Nonnull error) {
     NSLog(@"-------------------");
     NSLog(@"请求失败");
     NSLog(@"原始地址:%@", url);
     for (TCNDataCenterMatchedURLItem *result in resultURLs) {
       NSLog(@"转换后的地址:%@", result.matchedURL);
     }
-    NSLog(@"请求失败的地址:%@", task.originalRequest);
     NSLog(@"失败原因:%@", error);
     NSLog(@"-------------------");
   };

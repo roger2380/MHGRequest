@@ -10,6 +10,9 @@
 #import "TCNDataCenterManager.h"
 #import "TCNRequestError.h"
 
+typedef void(^TCNAFSuccessBlock)(NSURLSessionDataTask * _Nonnull, id _Nonnull);
+typedef void(^TCNAFFailureBlock)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull);
+
 @implementation TCNAutoDataCenterStopErrorType
 
 - (nullable instancetype)initWithErrorDomain:(nullable NSString *)errorDomain errorCode:(NSInteger)errorCode {
@@ -68,8 +71,8 @@ NS_ASSUME_NONNULL_END
 
 - (nullable NSURLSessionDataTask *)autoDataCenterGET:(nonnull NSString *)URLString
                                           parameters:(nullable id)parameters
-                                             success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable responseObject))success
-                                             failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
+                                             success:(nullable void (^)(id _Nullable responseObject))success
+                                             failure:(nullable void (^)(NSError *error))failure {
   return [self startAutoDataCenterWithHTTPMethod:@"GET"
                                        URLString:URLString
                                       parameters:parameters
@@ -79,8 +82,8 @@ NS_ASSUME_NONNULL_END
 
 - (nullable NSURLSessionDataTask *)autoDataCenterPOST:(nonnull NSString *)URLString
                                            parameters:(nullable id)parameters
-                                              success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                                              failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure {
+                                              success:(nullable void (^)(id _Nullable responseObject))success
+                                              failure:(nullable void (^)(NSError *error))failure {
   return [self startAutoDataCenterWithHTTPMethod:@"POST"
                                        URLString:URLString
                                       parameters:parameters
@@ -91,8 +94,8 @@ NS_ASSUME_NONNULL_END
 - (NSURLSessionDataTask *)startAutoDataCenterWithHTTPMethod:(NSString *)method
                                                   URLString:(NSString *)URLString
                                                  parameters:(id)parameters
-                                                    success:(void (^)(NSURLSessionDataTask *, id))success
-                                                    failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+                                                    success:(void (^)(id))success
+                                                    failure:(void (^)(NSError *))failure {
   SEL dataTaskWithHTTPMethodSEL = @selector(dataTaskWithHTTPMethod:URLString:parameters:uploadProgress:downloadProgress:success:failure:);
   BOOL haveCreatedataTaskSEL = [self respondsToSelector:dataTaskWithHTTPMethodSEL];
 #ifdef DEBUG
@@ -116,7 +119,7 @@ NS_ASSUME_NONNULL_END
   TCNAFFailureBlock shouldHandlefailed = ^(NSURLSessionDataTask * _Nullable task, NSError *error) {
     failedCount++;
     if (failedCount == items.count) {
-      failure(task, error);
+      failure(error);
     }
   };
   
@@ -140,7 +143,7 @@ NS_ASSUME_NONNULL_END
     
     if (shouldStop) {
       didHandleCompletion = YES;
-      failure(task, error);
+      failure(error);
       [self cancelTasks:tasks];
     } else {
       shouldHandlefailed(task, error);
@@ -157,7 +160,7 @@ NS_ASSUME_NONNULL_END
         }
         didHandleCompletion = YES;
         [[TCNDataCenterManager defaultManager]requestSuccessWithItem:item];
-        success(task,responseObject);
+        success(responseObject);
         [self cancelTasks:tasks];
       };
       
