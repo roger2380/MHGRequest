@@ -14,13 +14,13 @@
 #import "TCNDataCenter.h"
 #import "TCNDataCenterManager.h"
 #import "TCNDataCenterMatchedURLItem.h"
+#import "TCNRequest.h"
 #import "TCNRequestError.h"
 #import "TCNHTTPRequestSerialization+Protect.h"
 #import "TCNHTTPRequestSerialization.h"
 #import "TCNHTTPTrackRequestSerialization.h"
 #import "TCNHTTPZhanqiTrackRequestSerialization.h"
 #import "TCNRSARequestSerialization.h"
-#import "TCNRequest.h"
 
 FOUNDATION_EXPORT double TCNRequestVersionNumber;
 FOUNDATION_EXPORT const unsigned char TCNRequestVersionString[];

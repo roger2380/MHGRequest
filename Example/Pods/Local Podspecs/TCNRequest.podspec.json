@@ -18,21 +18,59 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "TCNRequest/Classes/**/*",
+  "requires_arc": true,
   "frameworks": "Foundation",
-  "libraries": "z",
-  "dependencies": {
-    "TCNDeviceInfo": [
-      "~> 0.0.03"
-    ],
-    "TCNDataEncoding": [
-      "~> 0.0.2"
-    ],
-    "AFNetworking": [
-      "~> 3.1.0"
-    ],
-    "RegexKitLite": [
-      "~> 4.0"
-    ]
-  }
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "TCNRequest/Classes/TCNRequest.h",
+      "dependencies": {
+        "TCNRequest/Error": [
+
+        ],
+        "TCNRequest/AutoDataCenetr": [
+
+        ],
+        "TCNRequest/RequestSerialization": [
+
+        ]
+      }
+    },
+    {
+      "name": "Error",
+      "source_files": "TCNRequest/Classes/Error/**/*"
+    },
+    {
+      "name": "AutoDataCenetr",
+      "source_files": "TCNRequest/Classes/AutoDataCenetr/**/*",
+      "dependencies": {
+        "TCNRequest/Error": [
+
+        ],
+        "AFNetworking": [
+          "~> 3.1.0"
+        ],
+        "RegexKitLite": [
+          "~> 4.0"
+        ]
+      }
+    },
+    {
+      "name": "RequestSerialization",
+      "source_files": "TCNRequest/Classes/RequestSerialization/**/*",
+      "dependencies": {
+        "AFNetworking": [
+          "~> 3.1.0"
+        ],
+        "TCNDeviceInfo": [
+          "~> 0.0.03"
+        ],
+        "TCNDataEncoding": [
+          "~> 0.0.2"
+        ]
+      },
+      "libraries": "z"
+    }
+  ]
 }

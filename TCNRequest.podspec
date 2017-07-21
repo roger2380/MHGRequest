@@ -30,17 +30,41 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'TCNRequest/Classes/**/*'
+  s.requires_arc = true
+
+  s.frameworks = 'Foundation'
+
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |core|
+    core.source_files = 'TCNRequest/Classes/TCNRequest.h'
+    core.dependency 'TCNRequest/Error'
+    core.dependency 'TCNRequest/AutoDataCenetr'
+    core.dependency 'TCNRequest/RequestSerialization'
+  end
+
+  s.subspec 'Error' do |error|
+    error.source_files = 'TCNRequest/Classes/Error/**/*'
+  end
+
+  s.subspec 'AutoDataCenetr' do |autoDataCenetr|
+    autoDataCenetr.source_files = 'TCNRequest/Classes/AutoDataCenetr/**/*'
+    autoDataCenetr.dependency 'TCNRequest/Error'
+    autoDataCenetr.dependency 'AFNetworking', '~> 3.1.0'
+    autoDataCenetr.dependency 'RegexKitLite', '~> 4.0'
+  end
+
+  s.subspec 'RequestSerialization' do |requestSerialization|
+    requestSerialization.source_files = 'TCNRequest/Classes/RequestSerialization/**/*'
+    requestSerialization.dependency 'AFNetworking', '~> 3.1.0'
+    requestSerialization.dependency 'TCNDeviceInfo', '~> 0.0.03'
+    requestSerialization.dependency 'TCNDataEncoding', '~> 0.0.2'
+    requestSerialization.libraries    = "z"
+  end
   
   # s.resource_bundles = {
   #   'TCNRequest' => ['TCNRequest/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'Foundation'
-  s.libraries    = "z"
-  s.dependency 'TCNDeviceInfo', '~> 0.0.03'
-  s.dependency 'TCNDataEncoding', '~> 0.0.2'
-  s.dependency 'AFNetworking', '~> 3.1.0'
-  s.dependency 'RegexKitLite', '~> 4.0'
 end
