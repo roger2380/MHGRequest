@@ -15,23 +15,34 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - RegexKitLite (4.0)
-  - TCNDataEncoding (0.0.2):
-    - TCNDataEncoding/ras-base64 (= 0.0.2)
-  - TCNDataEncoding/ras-base64 (0.0.2)
+  - TCNDataEncoding (0.0.5):
+    - TCNDataEncoding/Core (= 0.0.5)
+  - TCNDataEncoding/Base64 (0.0.5)
+  - TCNDataEncoding/Compress (0.0.5)
+  - TCNDataEncoding/Core (0.0.5):
+    - TCNDataEncoding/Base64
+    - TCNDataEncoding/Compress
+    - TCNDataEncoding/JavaScriptString
+    - TCNDataEncoding/RSA
+    - TCNDataEncoding/UrlEncode
+  - TCNDataEncoding/JavaScriptString (0.0.5)
+  - TCNDataEncoding/RSA (0.0.5):
+    - TCNDataEncoding/Base64
+  - TCNDataEncoding/UrlEncode (0.0.5)
   - TCNDeviceInfo (0.0.03):
     - TCNDataEncoding (~> 0.0.2)
-  - TCNRequest (0.0.02):
-    - TCNRequest/Core (= 0.0.02)
-  - TCNRequest/AutoDataCenetr (0.0.02):
+  - TCNRequest (0.1.01):
+    - TCNRequest/Core (= 0.1.01)
+  - TCNRequest/AutoDataCenetr (0.1.01):
     - AFNetworking (~> 3.1.0)
     - RegexKitLite (~> 4.0)
     - TCNRequest/Error
-  - TCNRequest/Core (0.0.02):
+  - TCNRequest/Core (0.1.01):
     - TCNRequest/AutoDataCenetr
     - TCNRequest/Error
     - TCNRequest/RequestSerialization
-  - TCNRequest/Error (0.0.02)
-  - TCNRequest/RequestSerialization (0.0.02):
+  - TCNRequest/Error (0.1.01)
+  - TCNRequest/RequestSerialization (0.1.01):
     - AFNetworking (~> 3.1.0)
     - TCNDataEncoding (~> 0.0.2)
     - TCNDeviceInfo (~> 0.0.03)
@@ -46,9 +57,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
-  TCNDataEncoding: 54569c285df52ccd07907ed4c7039e581c9dad61
+  TCNDataEncoding: ce0460a29ba464b4908e9e993b8cf4322fb24ba3
   TCNDeviceInfo: 1508619be470ab1d0ca7b855f393e91444ec36cb
-  TCNRequest: 5d3b26e9476db86134bbbe1b41812b45400fc21c
+  TCNRequest: 1ca4c79931d2d41f792794875bfa3fad68d85b21
 
 PODFILE CHECKSUM: e2255d52a355647dcbab54db2364a82aeae4924f
 

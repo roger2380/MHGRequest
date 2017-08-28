@@ -12,6 +12,8 @@
 
 - (NSString *)md5;
 
+- (NSString *)replaceBracesWithCode;
+
 - (NSString *)urlEncode;
 
 - (NSString *)urlEncodeUsingEncoding:(NSStringEncoding)encoding;

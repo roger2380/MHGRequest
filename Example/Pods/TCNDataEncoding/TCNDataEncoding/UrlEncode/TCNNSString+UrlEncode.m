@@ -28,6 +28,17 @@
           ];
 }
 
+- (NSString *)replaceBracesWithCode {
+  NSString *url = self;
+  url = [url stringByReplacingOccurrencesOfString:@"{" withString:@"%7B"];
+  url = [url stringByReplacingOccurrencesOfString:@"}" withString:@"%7D"];
+  url = [url stringByReplacingOccurrencesOfString:@"(" withString:@"%28"];
+  url = [url stringByReplacingOccurrencesOfString:@")" withString:@"%29"];
+  url = [url stringByReplacingOccurrencesOfString:@"$" withString:@"%24"];
+  url = [url stringByReplacingOccurrencesOfString:@"," withString:@"%2C"];
+  return url;
+}
+
 - (NSString *)urlEncode {
   return [self urlEncodeUsingEncoding:NSUTF8StringEncoding];
 }

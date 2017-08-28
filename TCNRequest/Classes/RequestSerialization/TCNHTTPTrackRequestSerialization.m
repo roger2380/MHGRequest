@@ -9,7 +9,7 @@
 #import "TCNHTTPTrackRequestSerialization.h"
 #import "TCNHTTPRequestSerialization+Protect.h"
 #import <TCNDeviceInfo/TCNDeviceInfo.h>
-#import <TCNDataEncoding/NSData+TCNGzip.h>
+#import <TCNDataEncoding/NSData+Compress.h>
 
 @implementation TCNHTTPTrackRequestSerialization
 
@@ -27,7 +27,7 @@
       [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
     NSData *body = [NSJSONSerialization dataWithJSONObject:[resultDic copy] options:0 error:nil];
-    request.HTTPBody = [body gzip];
+    request.HTTPBody = [body zlib];
   } else {
     // TODO: 补全参数不是字典时的处理逻辑 这种情况比较少见
   }
