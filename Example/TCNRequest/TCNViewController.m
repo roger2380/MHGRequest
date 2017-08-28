@@ -35,7 +35,9 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 }
 
 - (void)clickSendBtn {
-  [self testAutoDataCenterManagerWithURL:@"http://manga.1kswwuxn.coswwm/api/home/getPosterList"];
+  [self adTrackRequestTest];
+//  [self qxBaseRequest];
+//  [self testAutoDataCenterManagerWithURL:@"http://manga.1kxun.mobi/api/home/getNewList"];
 }
 
 - (void)qxBaseRequest {
@@ -95,7 +97,7 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 }
 
 - (void)adTrackRequestTest {
-  TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
+  AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
   NSString *signKey = @"testSignKey"; // 服务器给的用于加密的SN验签
   NSString *accessToken = @"testAccessToken"; // 当前登录用户的token,没有登录的时候传空
   manager.requestSerializer = [TCNHTTPTrackRequestSerialization serializerWithSignKey:signKey accessToken:accessToken];
