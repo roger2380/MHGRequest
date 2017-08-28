@@ -105,15 +105,28 @@ NS_ASSUME_NONNULL_END
     return nil;
   }
 #endif
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 过滤掉重复的URL
+  NSArray<TCNDataCenterMatchedURLItem *> *allItems =  [[NSArray alloc]initWithArray:[[TCNDataCenterManager defaultManager]
+                                                                                     urlsMatchedWithOriginURL:URLString]];
+  NSArray<TCNDataCenterMatchedURLItem *> *items = @[];
+  NSMutableSet<NSString *> *matchedURLs = [[NSMutableSet alloc] initWithCapacity:allItems.count];
   
-  __block BOOL didHandleCompletion = NO;
+  for (TCNDataCenterMatchedURLItem *item in allItems) {
+    if ([item.matchedURL isEqualToString:URLString]) continue;
+    if ([matchedURLs containsObject:item.matchedURL]) continue;
+    items = [items arrayByAddingObject:item];
+    [matchedURLs addObject:item.matchedURL];
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 加入原始的URL配置
   TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
                                                                                            originalURL:URLString
                                                                                             matchedURL:URLString];
-  NSArray<TCNDataCenterMatchedURLItem *> *items =  [[NSArray alloc]initWithArray:[[TCNDataCenterManager defaultManager]
-                                                                                  urlsMatchedWithOriginURL:URLString]];
   items = [items arrayByAddingObject:originItem];
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  __block BOOL didHandleCompletion = NO;
   __block NSInteger failedCount = 0;
   
   TCNAFFailureBlock shouldHandlefailed = ^(NSURLSessionDataTask * _Nullable task, NSError *error) {
