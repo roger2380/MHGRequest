@@ -58,8 +58,7 @@ Pod::Spec.new do |s|
     requestSerialization.source_files = 'TCNRequest/Classes/RequestSerialization/**/*'
     requestSerialization.dependency 'AFNetworking', '~> 3.1.0'
     requestSerialization.dependency 'TCNDeviceInfo', '~> 0.0.03'
-    requestSerialization.dependency 'TCNDataEncoding', '~> 0.0.2'
-    requestSerialization.libraries    = "z"
+    requestSerialization.dependency 'TCNDataEncoding', '~> 0.0.5'
   end
   
   # s.resource_bundles = {
