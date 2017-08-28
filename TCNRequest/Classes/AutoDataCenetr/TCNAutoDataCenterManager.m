@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_END
   
   TCNAFFailureBlock shouldHandlefailed = ^(NSURLSessionDataTask * _Nullable task, NSError *error) {
     failedCount++;
-    if (failedCount == items.count) {
+    if (failedCount == items.count && failure) {
       failure(error);
     }
   };
@@ -143,7 +143,9 @@ NS_ASSUME_NONNULL_END
     
     if (shouldStop) {
       didHandleCompletion = YES;
-      failure(error);
+      if (failure) {
+        failure(error);
+      }
       [self cancelTasks:tasks];
     } else {
       shouldHandlefailed(task, error);
@@ -160,7 +162,9 @@ NS_ASSUME_NONNULL_END
         }
         didHandleCompletion = YES;
         [[TCNDataCenterManager defaultManager]requestSuccessWithItem:item];
-        success(responseObject);
+        if (success) {
+          success(responseObject);
+        }
         [self cancelTasks:tasks];
       };
       
