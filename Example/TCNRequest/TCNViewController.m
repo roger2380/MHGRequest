@@ -35,8 +35,9 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 }
 
 - (void)clickSendBtn {
-  [self adTrackRequestTest];
+//  [self adTrackRequestTest];
 //  [self qxBaseRequest];
+  [self autoDataCenterRequest];
 //  [self testAutoDataCenterManagerWithURL:@"http://manga.1kxun.mobi/api/home/getNewList"];
 }
 
@@ -80,20 +81,21 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 - (void)autoDataCenterRequest {
   TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
   manager.requestSerializer = [TCNHTTPRequestSerialization serializer];
-  AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-    NSLog(@"%@", responseObject);
+  void(^successBlock)(id object) = ^void(id object) {
+    NSLog(@"%@", object);
   };
-  AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+  
+  void(^failureBlock)(NSError *error) = ^void(NSError *error) {
     NSLog(@"%@", error);
   };
-  [manager GET:@"https://manga.1kxun.mobi/api/home/getNewList"
-    parameters:nil
-      progress:NULL
-       success:successBlock
-       failure:failureBlock];
   
-  //取消就执行cancel就行
-  //[task cancel];
+  NSURLSessionDataTask *task = [manager autoDataCenterGET:@"https://manga.1kxun.mobi/api/home/getNewList"
+                                               parameters:nil
+                                                  success:successBlock
+                                                  failure:failureBlock];
+  
+//  // 取消就执行cancel就行
+//  [task cancel];
 }
 
 - (void)adTrackRequestTest {
