@@ -143,7 +143,7 @@ NS_ASSUME_NONNULL_END
       return;
     }
     
-    BOOL shouldStop = error.code == NSURLErrorCancelled;
+    BOOL shouldStop = ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled);
     
     if (!shouldStop) {
       for (TCNAutoDataCenterStopErrorType *type in self.acceptableErrorType) {
