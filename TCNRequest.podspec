@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TCNRequest'
-  s.version          = '0.1.02'
+  s.version          = '0.1.03'
   s.summary          = 'trueColor net base'
 
 # This description is used to generate tags and improve search results.
@@ -52,6 +52,7 @@ Pod::Spec.new do |s|
     autoDataCenetr.dependency 'TCNRequest/Error'
     autoDataCenetr.dependency 'AFNetworking', '~> 3.1.0'
     autoDataCenetr.dependency 'RegexKitLite', '~> 4.0'
+    autoDataCenetr.dependency 'TCNDeviceInfo', '~> 0.0.03'
   end
 
   s.subspec 'RequestSerialization' do |requestSerialization|
