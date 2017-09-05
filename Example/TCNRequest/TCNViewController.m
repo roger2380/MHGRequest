@@ -143,7 +143,8 @@ constructingBodyWithBlock:dataBlock
 }
 
 - (void)loadAutoDataCenterManagerWithConfigurationURL:(NSString *)url {
-  [[TCNDataCenterManager defaultManager]loadConfigurationWithURL:url];
+  [[TCNDataCenterManager defaultManager] loadConfigurationWithURL:url
+                                               currentAccessToken:@"sadadscsx54555774"];
 }
 
 - (void)testAutoDataCenterManagerWithURL:(NSString *)url {

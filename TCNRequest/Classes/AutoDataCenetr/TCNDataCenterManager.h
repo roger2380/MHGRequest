@@ -22,8 +22,10 @@
  通过网络获取一个自动切换服务器的配置文件
 
  @param url 自动切换服务器配置文件的URL
+ @param token 当前登录用户的token,没有登录则传nil
  */
-- (void)loadConfigurationWithURL:(nonnull NSString *)url;
+- (void)loadConfigurationWithURL:(nonnull NSString *)url
+              currentAccessToken:(nullable NSString *)token;
 
 /**
  获取指定url对应的不同数据中心的地址

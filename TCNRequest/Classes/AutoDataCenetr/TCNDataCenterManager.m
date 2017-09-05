@@ -9,6 +9,8 @@
 #import "TCNDataCenterManager.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "TCNDataCenter.h"
+#import "TCNAutoDataCenterManager.h"
+#import <TCNDeviceInfo/TCNDeviceInfo.h>
 
 static NSString *TCNDataCenterManagerPriorityUserdefaultsKey = @"com.TCNRequest.DataCenterPriorityUserdefaultsKey";
 static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
@@ -67,23 +69,38 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
   return documentsDirectory;
 }
 
-- (void)loadConfigurationWithURL:(NSString *)url {
+- (void)loadConfigurationWithURL:(NSString *)url
+              currentAccessToken:(NSString *)token {
   if (![url isKindOfClass:[NSString class]] || url.length == 0) return;
   
-  AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-  [manager GET:url
-    parameters:nil
-      progress:NULL
-       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         if (![responseObject isKindOfClass:[NSDictionary class]]) return;
-         NSString *status = [responseObject objectForKey:@"status"];
-         if (![status isKindOfClass:[NSString class]]) return;
-         if (![status isEqualToString:@"success"]) return;
-         NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
-         if (![arr isKindOfClass:[NSArray class]]) return;
-         [self loadConfigurationWithArray:arr];
-       }
-       failure:NULL];
+  NSString *resultURL = url;
+  NSMutableDictionary<NSString *, NSString *> *dict = [[NSMutableDictionary alloc]
+                                                       initWithDictionary:[TCNDeviceInfo universalURLParameters]];
+  
+  if ([token isKindOfClass:[NSString class]] && token.length > 0) {
+    [dict setObject:token forKey:@"access_token"];
+    [dict setObject:token forKey:@"_token"];
+  }
+  
+  NSString *query = AFQueryStringFromParameters(dict);
+  if (query && query.length > 0) {
+    resultURL = [resultURL stringByAppendingFormat:[NSURL URLWithString:resultURL].query ? @"&%@" : @"?%@", query];
+  }
+  
+  TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
+  
+  [manager autoDataCenterGET:resultURL
+                  parameters:nil
+                     success:^(id  _Nullable responseObject) {
+                       if (![responseObject isKindOfClass:[NSDictionary class]]) return;
+                       NSString *status = [responseObject objectForKey:@"status"];
+                       if (![status isKindOfClass:[NSString class]]) return;
+                       if (![status isEqualToString:@"success"]) return;
+                       NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
+                       if (![arr isKindOfClass:[NSArray class]]) return;
+                       [self loadConfigurationWithArray:arr];
+                     }
+                     failure:nil];
 }
 
 - (void)loadConfigurationWithArray:(NSArray<NSDictionary *> *)dataCenterConfigs {
