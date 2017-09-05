@@ -6,7 +6,7 @@
 //
 //
 
-#import <TCNRequest/TCNRequest.h>
+#import "TCNHTTPRequestSerialization.h"
 
 /**
  调用方可以直接传入NSData作为HTTP请求的body
