@@ -20,6 +20,7 @@
 #import "TCNHTTPRequestSerialization.h"
 #import "TCNHTTPTrackRequestSerialization.h"
 #import "TCNHTTPZhanqiTrackRequestSerialization.h"
+#import "TCNPOSTDataRequestSerialization.h"
 #import "TCNRSARequestSerialization.h"
 
 FOUNDATION_EXPORT double TCNRequestVersionNumber;
