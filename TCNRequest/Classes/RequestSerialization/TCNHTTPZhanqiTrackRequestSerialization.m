@@ -29,7 +29,7 @@
     NSData *body = [NSJSONSerialization dataWithJSONObject:[resultDic copy] options:0 error:nil];
     request.HTTPBody = [body zlib];
   } else {
-    // TODO: 补全参数不是字典时的处理逻辑 这种情况比较少见
+    [super buildPostBodyWithRequest:request parameters:parameters];
   }
 }
 
