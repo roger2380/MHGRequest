@@ -52,19 +52,24 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
     BOOL isDir = NO;
     BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
     
+#ifdef DEBUG
     if (!isDirExist) {
       BOOL success = [manager createDirectoryAtPath:documentsDirectory
                         withIntermediateDirectories:YES
                                          attributes:nil
                                               error:nil];
-#if DEBUG
       NSAssert(success, @"创建存放dataCenter数据文件夹失败");
-    }
-
-    else {
+    } else {
       NSAssert(isDir, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
-#endif
     }
+#else
+    if (!isDirExist) {
+      [manager createDirectoryAtPath:documentsDirectory
+         withIntermediateDirectories:YES
+                          attributes:nil
+                               error:nil];
+    }
+#endif
   });
   return documentsDirectory;
 }
