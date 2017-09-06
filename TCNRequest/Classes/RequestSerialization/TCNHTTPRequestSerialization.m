@@ -88,7 +88,7 @@
     [dict setObject:self.accessToken forKey:@"access_token"];
     [dict setObject:self.accessToken forKey:@"_token"];
   }
-  if (contain && parameters) {
+  if (contain && [parameters isKindOfClass:[NSDictionary class]]) {
     [dict addEntriesFromDictionary:parameters];
   }
   
