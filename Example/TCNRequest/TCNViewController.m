@@ -94,8 +94,10 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
                                                   success:successBlock
                                                   failure:failureBlock];
   
-//  // 取消就执行cancel就行
-//  [task cancel];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [task cancel];
+    NSLog(@"取消请求");
+  });
 }
 
 - (void)adTrackRequestTest {
