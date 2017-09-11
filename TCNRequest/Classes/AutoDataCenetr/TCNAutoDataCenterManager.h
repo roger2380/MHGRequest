@@ -7,22 +7,12 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import "TCNAutoDataCenterStopErrorType.h"
 
 typedef void(^TCNAutoDataCenterSuccessBlock)(id _Nonnull);
 typedef void(^TCNAutoDataCenterFailureBlock)(NSError * _Nonnull);
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface TCNAutoDataCenterStopErrorType : NSObject
-
-@property (nonatomic, readonly, copy) NSString *errorDomain;
-@property (nonatomic, readonly, assign) NSInteger errorCode;
-
-- (nullable instancetype)initWithErrorDomain:(nullable NSString *)errorDomain errorCode:(NSInteger)errorCode;
-
-- (BOOL)isThisErrorType:(nullable NSError *)error;
-
-@end
 
 /**
  支持自动切换服务器的Manager

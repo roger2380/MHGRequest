@@ -11,6 +11,8 @@
 #endif
 
 #import "TCNAutoDataCenterManager.h"
+#import "TCNAutoDataCenterManagerURLSessionTaskSwizzling.h"
+#import "TCNAutoDataCenterStopErrorType.h"
 #import "TCNDataCenter.h"
 #import "TCNDataCenterManager.h"
 #import "TCNDataCenterMatchedURLItem.h"
