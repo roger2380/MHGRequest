@@ -105,25 +105,28 @@ NS_ASSUME_NONNULL_END
                                                     success:(void (^)(id))success
                                                     failure:(void (^)(NSError *))failure {
   if (!self.autoDataCenterUsable) return nil;
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 过滤掉重复的URL
   NSArray<TCNDataCenterMatchedURLItem *> *allItems =  [[NSArray alloc]initWithArray:[[TCNDataCenterManager defaultManager]
                                                                                      urlsMatchedWithOriginURL:URLString]];
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 如果当前没有任何多线路配置，使用原始地址
+  
+  if (allItems.count == 0) {
+    TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
+                                                                                             originalURL:URLString
+                                                                                              matchedURL:URLString];
+    allItems = @[originItem];
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 过滤掉重复的URL
+
   NSArray<TCNDataCenterMatchedURLItem *> *items = @[];
   NSMutableSet<NSString *> *matchedURLs = [[NSMutableSet alloc] initWithCapacity:allItems.count];
   
   for (TCNDataCenterMatchedURLItem *item in allItems) {
-    if ([item.matchedURL isEqualToString:URLString]) continue;
     if ([matchedURLs containsObject:item.matchedURL]) continue;
     items = [items arrayByAddingObject:item];
     [matchedURLs addObject:item.matchedURL];
   }
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 加入原始的URL配置
-  TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
-                                                                                           originalURL:URLString
-                                                                                            matchedURL:URLString];
-  items = [items arrayByAddingObject:originItem];
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   __block NSInteger taskTotalCount = 0;
