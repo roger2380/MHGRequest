@@ -105,8 +105,8 @@ NS_ASSUME_NONNULL_END
                                                     success:(void (^)(id))success
                                                     failure:(void (^)(NSError *))failure {
   if (!self.autoDataCenterUsable) return nil;
-  NSArray<TCNDataCenterMatchedURLItem *> *allItems =  [[NSArray alloc]initWithArray:[[TCNDataCenterManager defaultManager]
-                                                                                     urlsMatchedWithOriginURL:URLString]];
+  NSArray<TCNDataCenterMatchedURLItem *> *allItems =  [[TCNDataCenterManager defaultManager]
+                                                       urlsMatchedWithOriginURL:URLString];
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 如果当前没有任何多线路配置，使用原始地址
   
