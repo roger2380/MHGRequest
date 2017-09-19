@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/TCNRequest.svg?style=flat)](http://cocoapods.org/pods/TCNRequest)
 [![Platform](https://img.shields.io/cocoapods/p/TCNRequest.svg?style=flat)](http://cocoapods.org/pods/TCNRequest)
 
-## Example
+## 简介
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+基于AFNetworking网络基础。一般情况下不建议调用方直接使用，应该使用[TCNRequestManager](http://git.1kxun.com/ios/TCNRequestManager)进行网络请求。
 
 ## Requirements
 
