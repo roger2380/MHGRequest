@@ -8,6 +8,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "TCNAutoDataCenterStopErrorType.h"
+#import <TCNRequest/TCNAutoDataCenterManagerConfigure.h>
 
 typedef void(^TCNAutoDataCenterSuccessBlock)(id _Nonnull);
 typedef void(^TCNAutoDataCenterFailureBlock)(NSError * _Nonnull);
@@ -19,6 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
  其中自动切换配置使用的是[TCNDataCenterManager defaultManager]的配置
  */
 @interface TCNAutoDataCenterManager : AFHTTPSessionManager
+
+
+/**
+ 初始化全局配置
+
+ @param config 指定的配置
+ */
++ (void)initializationWithConfig:(nonnull TCNAutoDataCenterManagerConfigure *)config;
 
 /**
  停止切换线路的错误类型。

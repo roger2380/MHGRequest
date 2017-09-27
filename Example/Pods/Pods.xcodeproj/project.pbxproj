@@ -8,112 +8,114 @@
 
 /* Begin PBXBuildFile section */
 		00C05031BBA5BA48A00FE41348F41BDA /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DAEA8E3A026740D124B0316FEF2F13D /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		01E48D25EF9B8BFAA269814AAF09C110 /* TCNRSARequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 665863BC78C091F4E8DA91B014A11C01 /* TCNRSARequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0895EA6DBB1860C8704504D4CE6EE8DF /* TCNAutoDataCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D752E2D5491D8E7D851F496CB25C50B4 /* TCNAutoDataCenterManager.m */; };
 		09F3CAB53A7CCE0F94D1B96BD3581A3F /* TCNDeviceInfo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D58776E7130D8F77F0EE8596D57B57D /* TCNDeviceInfo-dummy.m */; };
 		0D1FFD30267C0776FD3E88EFF51E312F /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A9B2BC0D7F2C7798ED21BABEA2404AB /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		122AAF2640A2EE5976B1B87388C62F48 /* TCNDataEncoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5075ADB8E63C6B595A7A0D5119F6D212 /* TCNDataEncoding.framework */; };
-		1291E827E1BDEBC5C0D3F9ED1A9631E4 /* TCNHTTPZhanqiTrackRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 849A62C982F9E25D7261AE47DC4F7B34 /* TCNHTTPZhanqiTrackRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12E7296150306AB7D290CB92B022C14F /* TCNNSString+UrlEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0BC525BE187ECB47270A2F1665782 /* TCNNSString+UrlEncode.m */; };
 		140F458AB7312414FC423FEED70A3733 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F97F2B50F522CF31C27FE78DD487A /* UIActivityIndicatorView+AFNetworking.m */; };
-		18FF7CD7CA7C59DB87E7046A9F3481E3 /* TCNDataCenterManagerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D6A23B92EF33BC521FF8F92D55FE762 /* TCNDataCenterManagerConfigure.m */; };
-		19CB8CB02070E680D78346D5F36D6672 /* TCNRSARequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 665863BC78C091F4E8DA91B014A11C01 /* TCNRSARequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C1EB8359F79C58F91CFC1BEDC03D124 /* NSString+JavaScriptString.m in Sources */ = {isa = PBXBuildFile; fileRef = 585B98CE1088074FFDFDAA087B0BC3B5 /* NSString+JavaScriptString.m */; };
 		1E2A6D057E20BE8F5ED3E594F7B8C286 /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF102203DEFAC6E752B89BE18FFFBCA /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E9C48321995E781336B9B573ED81231 /* TCNRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 734FA2E08C88A575998F1E56B73E1EE9 /* TCNRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FC03EA5458C0E840B93C3AB267B8C71 /* TCNDeviceInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A30482ED87722BD4E4B20368863914 /* TCNDeviceInfo.framework */; };
-		27569A06A08EB02F555829D23F609701 /* TCNPOSTDataRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8E01072FD9ABE71DB0FD386AE5428B /* TCNPOSTDataRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28E29063CDD4C98A2E43C886461C6FA6 /* TCNAutoDataCenterStopErrorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B8F4C62C7304B673AD17591A658E66 /* TCNAutoDataCenterStopErrorType.m */; };
+		25C402D5AFE18F2BAD6632704BFCD7B9 /* TCNHTTPTrackRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 834B6836D29462121A836FD128E645FF /* TCNHTTPTrackRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		291A5AAAD0B30F1B172F6727139FCF88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
 		29476636EA86BEFC4CB833D3BB7A52D7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1430E71BBCF41AF362534A7BC65694 /* AFURLRequestSerialization.m */; };
 		2951CBE2003C836F08D35C09635DE68D /* Pods-TCNRequest_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33EDE8BE785815F6C586464B2C8F62D2 /* Pods-TCNRequest_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2A66658F7DA313E691468C70A5E166C7 /* TCNDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 425099A27A35258F5D53477D40242A80 /* TCNDataCenter.m */; };
+		29EACD67959C1E7F263BC8BBB98C4EDF /* TCNRequest-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B77E9563E371ECE9BEA654B6F3BB8E2 /* TCNRequest-dummy.m */; };
 		2B0705CC26A4CBEE32A5A60284AED35B /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = AE46832475DFA0387892D81DBBEDAFC6 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E581B4C9CD0A572028A451827E94297 /* TCNDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8DC0B8B2BFB1BB45527B2303265290 /* TCNDeviceInfo.m */; };
-		30922FCCB13A309CEE6C5BAA10C268C0 /* TCNRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = D4400FBB65C48B29CE44BB6E788877CD /* TCNRequestError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F054D1C49B7CF2505443C3119CAA4EA /* TCNRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = D4400FBB65C48B29CE44BB6E788877CD /* TCNRequestError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		30F0BAE1DBB79BBB6CBD957EA8B89E4B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A806DD6F2B04161CE39A99208385F868 /* MobileCoreServices.framework */; };
 		32076D3DD644045CF79DFFEBB6BFF3F2 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 550265082088C9C893E80AB4B97F4E96 /* UIButton+AFNetworking.m */; };
-		3214C04C250EB931DD9ECDF4A04FDAB9 /* TCNDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 677AC2BD2938262331A262A9346E6426 /* TCNDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CA74EEFE9A2051D2ECE4A3145F07F6C0 /* UIProgressView+AFNetworking.m */; };
 		35CBB7B255FD8D412AFCECBC4311A847 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 71A9F8AF6E5F0EAA1E0A835790870534 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C2410C5C2EF60C27F2146CA0A82072F /* RegexKitLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF5B3E70C5C991789D3894831B6966 /* RegexKitLite.framework */; };
-		409C35098DE76AFB549F11CE8E1FD0F8 /* TCNDataCenterMatchedURLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A5E5ADA313A3060B6EA88D8D206048 /* TCNDataCenterMatchedURLItem.m */; };
+		3FB0B46F2B14B041DD25DF023A0AE141 /* TCNAutoDataCenterStopErrorType.h in Headers */ = {isa = PBXBuildFile; fileRef = 252D9B0FDCEF2065D5B44536E087B0FD /* TCNAutoDataCenterStopErrorType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42AF1BB1ED090CC9E588A463441D09E3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 557F5D2D02ACCB2891874B67782E5487 /* SystemConfiguration.framework */; };
+		434AA352A179BFBB4616C4642DAF7FB1 /* TCNHTTPRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C563075AC2C177CA1918DBA339AAB8 /* TCNHTTPRequestSerialization.m */; };
 		4442D8453D210EFC13CFE2CAF862ED1D /* AFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C12B270BE20AE9DC3FE139FA432E8C39 /* AFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45F802D04B3BE0CAEC586C2F3016027B /* UIActivityIndicatorView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 7004582D01917638BD73C6A00CBEE7D9 /* UIActivityIndicatorView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47B6412FF4B4DB6C3BE13F99D8D48B46 /* TCNHTTPZhanqiTrackRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 849A62C982F9E25D7261AE47DC4F7B34 /* TCNHTTPZhanqiTrackRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		47F04CBDF6C54B220F6AEECEF15264D5 /* AFAutoPurgingImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B1654BAA744234DD2F231F59D368FE5 /* AFAutoPurgingImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		486780C60A269FE70399319FC2911A87 /* TCNHTTPTrackRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C58700ED1F265A51B077F218EEF8FD76 /* TCNHTTPTrackRequestSerialization.m */; };
 		4B4EFFC858285B018D396A0EEE423AD9 /* NSString+JavaScriptString.h in Headers */ = {isa = PBXBuildFile; fileRef = 67D2C8E600A4371A8E86AA8FD0E29ABA /* NSString+JavaScriptString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C55A59D0D29B5D9D5709DD6601FAEBC /* TCNBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = F115DA401333B93A31D5C37CDDB59D6D /* TCNBase64.m */; };
 		51047C1945103943F70BEADE83725630 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C079C4CF39C4F4F0EEB65847CF4149C /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52071C352AB127FAA83F5A485AE7847C /* TCNHTTPTrackRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C58700ED1F265A51B077F218EEF8FD76 /* TCNHTTPTrackRequestSerialization.m */; };
 		53D837E1D58F3B8D38CCC63450CBB5FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948C40EDEC2DF8559600C52654E1BD75 /* UIKit.framework */; };
+		5447D85B778DB239B8A7B1E7681A5FEF /* TCNDataCenterManagerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B5289CFB6334359C6653F13F69C35F /* TCNDataCenterManagerConfigure.m */; };
 		5A1D34D104D42B1EE399E23BCD7935A0 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 02506303713785A71041B0E8BF2F117F /* AFURLResponseSerialization.m */; };
 		5B6FD485E08F33718A93F10E40C6C70B /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE171E10CDF248A3734A076D30F1A3D /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5BE20A03BC76D61B0F6B8EAA2F8FA71F /* TCNHTTPRequestSerialization+Protect.h in Headers */ = {isa = PBXBuildFile; fileRef = 125B057223195C0B1D33DEABA131B01D /* TCNHTTPRequestSerialization+Protect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5EB3DB3AAB6AB64DCF727833C4DE3DA5 /* TCNDataCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 04CA4E4CEE856B05C7702CBB7CAFA052 /* TCNDataCenterManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6338F893838BC5697ED48CA5EA94C4D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
 		649E78B5EA450FABDF5201E31F265FAB /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B425B7A4F28A37B1191A22050916D301 /* AFNetworkActivityIndicatorManager.m */; };
 		6573AF9ABA59AC8D1F52B07088197F71 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DDAF4462F02BF18C1CC15D969A3B758 /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		67000FD2EE4BAC36FD5B9C8153B3D751 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C563E335FE3010E3F0A097E98300F17E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */; };
 		68F9C894FFDA8D615F41493ED745AA63 /* Pods-TCNRequest_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FBA62540120EAA709FB3D05FDADF4E /* Pods-TCNRequest_Tests-dummy.m */; };
 		69A860C6C4B01E488F2B42B64EA0FCD1 /* TCNDataEncoding-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 912AEA53212F0E65E65F78565377F47A /* TCNDataEncoding-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A27990F5E4D6FFD716193A1739C4D84 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 557F5D2D02ACCB2891874B67782E5487 /* SystemConfiguration.framework */; };
 		6B57BD0B5012EC854EA5396F19340F89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
-		727439EAE4D4618A9CD239787ACE98AB /* TCNRequest-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D9CFF23E76F04D8DBCEE24A8086395F0 /* TCNRequest-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C5B5827C45F0A831E8B9D77BD5F60B3 /* TCNHTTPRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 62A0C23C8260B30110F6F237C932E04C /* TCNHTTPRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		789D749690B308852115FF20CD982A69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740FD33FC135B1F8FB15D065F749C48F /* CoreGraphics.framework */; };
+		78CF2EB3FC0F785E1938E9413D245A1D /* TCNPOSTDataRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D8E01072FD9ABE71DB0FD386AE5428B /* TCNPOSTDataRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A112C0F21A62CB6F1AA8D917A6EEA6C /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C7917E1AEB4FD354FACEA59612B80CF /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CE16B1BF75DF396768A0A3CFD968DB1 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B02C40E964DA6A2C26F31F4704ADDB /* UIWebView+AFNetworking.m */; };
-		7E093DFE6D2D2CA817E2898FF656B32D /* TCNAutoDataCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 72E29E103100748B97B2A15B0421F84F /* TCNAutoDataCenterManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		817F1563C4E2C39A3311B52102DC4E31 /* TCNDataCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0900827B416DA1E33066A88821B38AFC /* TCNDataCenterManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		817580B3FA7D3258AB5FC2ECE7D0FBBE /* TCNHTTPRequestSerialization+Protect.h in Headers */ = {isa = PBXBuildFile; fileRef = 125B057223195C0B1D33DEABA131B01D /* TCNHTTPRequestSerialization+Protect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8220E3F3B58B944B31677202C38C9A94 /* TCNDataCenterMatchedURLItem.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F8645C26D5A289FA775D448E3E1C2E /* TCNDataCenterMatchedURLItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8296CF0B73318A0470218BAA65F41A34 /* TCNAutoDataCenterManagerConfigure.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F5B0F4E84495EA2633CFEC2342684F7 /* TCNAutoDataCenterManagerConfigure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82D554EC9FB9A62D935B6555325F5898 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394E82E0F6B456102347C8019FCB8477 /* Security.framework */; };
-		8996F920DD408034FD32DBFFC8B47EF9 /* TCNAutoDataCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC23B90394E887DD6A6E7254C24A8C65 /* TCNAutoDataCenterManager.m */; };
-		8A87D084C11ACDA7EE47EC58A0D9983D /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = 1102F75AFA1E8621DC736223B87B8E3E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		833AD032C80EF3EBA54D71FE225BAF06 /* TCNDataCenterManagerConfigure.h in Headers */ = {isa = PBXBuildFile; fileRef = 287E21B2DEB6F55DF2E26A215CDF9651 /* TCNDataCenterManagerConfigure.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		858B89C9EE8B567A6AEAEC6357FB9F2A /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = AA27F0ACA883524FA694E58824EBEB19 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8AB679328CD7720D3C5E31D8254200FB /* TCNAutoDataCenterManagerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 655A29BC08F8245C84A6C23E9C84414E /* TCNAutoDataCenterManagerConfigure.m */; };
 		8B6599E8F3F0F1039401A42EE14BBF7A /* Pods-TCNRequest_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC457D67EFF7518DF4906AAFF8E303A3 /* Pods-TCNRequest_Example-dummy.m */; };
 		8F3A7B42DF1BE2F5638D8606DCB4C921 /* TCNNSString+UrlEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = 019FB2CAA6B337CA2F73CAFE65BB9A0E /* TCNNSString+UrlEncode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90F108F0ACA1B29C2504240520837DEB /* TCNHTTPZhanqiTrackRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC5E22D99B21CEF8C79AB0F0A07A6C /* TCNHTTPZhanqiTrackRequestSerialization.m */; };
 		9264BD69AFA8EE74F0D7F0EBD74F762F /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D76CADA0CECA9F3F6C0BFE233CF405A /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		934C4576989392DAC9B972C4DFDFF0E6 /* TCNDataCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B266C499EF9F2826A9EF31B66365F875 /* TCNDataCenterManager.m */; };
 		93DFC0CC12E763AE770017349EE009D1 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AA2863932FB7EDAF3DA6106ACA57EB2D /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		948458DC0A9308A2D8C018C37FB7BBDD /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = A4093148642AB4E3148AB3562E84E90E /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94EF97F27E4463C642DB01BCFA3A8846 /* TCNRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B970FBB51969B7F1057ACFCBEDE60 /* TCNRequestError.m */; };
 		95DDA8EE32719D4A75B5DF2DA91BA4C0 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3222D25F3A75D9218AF3D0FEBCCABE /* AFNetworking.framework */; };
-		994CF173C43D92344F81380779461836 /* TCNHTTPTrackRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 834B6836D29462121A836FD128E645FF /* TCNHTTPTrackRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C00F041B3C1D3EFC352AD617A51DF3F /* TCNDataEncoding-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1EA612F11D7DF04B05E82F2B9C496 /* TCNDataEncoding-dummy.m */; };
 		9C0BF376C0D4DBD05960CEE9938B673B /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFA2CE934FC8A3986045577D652B103 /* RegexKitLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9CFA034111ADFD781BF74D1524ED862C /* TCNRequest-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B77E9563E371ECE9BEA654B6F3BB8E2 /* TCNRequest-dummy.m */; };
+		9D7AE647C95D6E298FF0D6927055011D /* TCNAutoDataCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEB61BBCE71BCBE6449AB3111367C95 /* TCNAutoDataCenterManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0EAD312EE801C6462980BE89FD30B65 /* NSData+Compress.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F88715C376E323A234FDD7287508AA /* NSData+Compress.m */; };
-		A21D37C91DEA42CF8B777390B3B68ABD /* TCNDataCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96254B2C8156414F969D2D548FB4FBC9 /* TCNDataCenterManager.m */; };
 		A3591DEDA776B48C026E7F9144981E58 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F287DF484CC4D78FF64F7BBA8D3BE9E2 /* AFAutoPurgingImageCache.m */; };
 		A398D63C8DED664D99A864D79881A13C /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9867CE0F9F8D5AC42EB33CAB7392AD12 /* AFImageDownloader.m */; };
-		A3B9E7BB8572AD72A1E97C180F1C864E /* TCNRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B970FBB51969B7F1057ACFCBEDE60 /* TCNRequestError.m */; };
 		A45ACA2EE72ACC32549DB1B0CD7C9448 /* NSData+Compress.h in Headers */ = {isa = PBXBuildFile; fileRef = BC51F729A397DBECCBE9190A133F347A /* NSData+Compress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A527EEB3FA19DB4FD1E0DFC795D6AB1C /* TCNHTTPRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C563075AC2C177CA1918DBA339AAB8 /* TCNHTTPRequestSerialization.m */; };
+		A5E85C321943FC492B77D162C10FFADA /* TCNRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2250CE545A559E46F6C2F94C389EBD99 /* TCNRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6F02F5B2C8F8BFF72EF893C74D88DDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
 		A85278E4740D0A4355DAFFFA05E69E55 /* TCNDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 46B4D5178967E68EF6280BD3E35F7A7E /* TCNDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8C297643282E0CF5E7DF9CB6E23A0D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
-		AD309EC97ADFFD71FC9A6223C9862AC8 /* TCNHTTPRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 62A0C23C8260B30110F6F237C932E04C /* TCNHTTPRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE976B0E8E3DD81E4F49DBEF19D3C0AD /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E394BC1EF544BB10E6DE1639465A5260 /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEFD45A79AA96B3DD4AE2A14CF530816 /* TCNRequest-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D9CFF23E76F04D8DBCEE24A8086395F0 /* TCNRequest-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B16A078FC7FBC172A266A336AEF7F673 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4773FA46F20A4418627E901DD498C27C /* UIRefreshControl+AFNetworking.m */; };
 		B1E307D566EC40F50CB735FCC54B6793 /* RegexKitLite-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A3E88EC716CE12B478D23D2EFAE60 /* RegexKitLite-dummy.m */; };
-		B373732FF9DC03930F6259ECA793BAF6 /* TCNRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2250CE545A559E46F6C2F94C389EBD99 /* TCNRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B221D0641FF178BA94312F9170ACB693 /* TCNDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0725B4BE134CDDFDE524DC69A41A69C7 /* TCNDataCenter.m */; };
 		B474DD153F3AFD071261E0CFDC5BA74A /* RegexKitLite-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EEF29568CD6B759FD53249965280352 /* RegexKitLite-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5F76D600CCA27AE8A98130666D9C10F /* TCNRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1D38397FEA7DAC03CDF17219124AE0 /* TCNRSA.m */; };
 		BA7E5BA9DB757117A15602C2039286EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
-		BAB2C7AABBCC0F8F07A8E58EFCCC27E9 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F7FF9C5B1D5B2A76591CB3AF62F3C3 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */; };
-		BB5E40FCE81B5EE1E16B719D602F2210 /* TCNDataCenterManagerConfigure.h in Headers */ = {isa = PBXBuildFile; fileRef = 0794E89E5FF33C1478C43D089CF5841C /* TCNDataCenterManagerConfigure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BDD11D3137EED3FC5E0DE984450200C6 /* TCNBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2970EA46BFA85E7F110B8DE506A750 /* TCNBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0052310507B87243BD7DF2C0FAB9A43 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E449F67FCA3CF03127D21431BEBB52F7 /* CoreTelephony.framework */; };
 		C0A2A872FDAE967885D25B3654366214 /* TCNDataEncoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5075ADB8E63C6B595A7A0D5119F6D212 /* TCNDataEncoding.framework */; };
-		C4461AE8940A60320ADD5B91114C0F2F /* TCNAutoDataCenterStopErrorType.h in Headers */ = {isa = PBXBuildFile; fileRef = D1F850FFA7CD8319A44E30D9A25170DD /* TCNAutoDataCenterStopErrorType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C63196AA6534C71BFB9758BB09D99DD0 /* TCNPOSTDataRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F54303FC7BFF95DF73DF5384BD695F /* TCNPOSTDataRequestSerialization.m */; };
 		CEB2F0E229EF841D92C780C3FFDF1BEA /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACB6AABD49BF7270D01C2067DE367A /* AFSecurityPolicy.m */; };
 		CF287829627F26B2EB4382B897D06A0E /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABA3423C23D9DB22C33DBBBDC8563F6 /* AFNetworking-dummy.m */; };
 		D4E80BD7EAAB83200183110578A80591 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396C4F0BFB1E921C1AF97D3B00D04B52 /* AFURLSessionManager.m */; };
-		D64943FBC7F22B5327D0DBC8C0FC61E0 /* TCNHTTPZhanqiTrackRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC5E22D99B21CEF8C79AB0F0A07A6C /* TCNHTTPZhanqiTrackRequestSerialization.m */; };
+		D7F0D4E0E922EF6B0D160B2C04401645 /* TCNRSARequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD53A619E36933641B3789FBD15D487 /* TCNRSARequestSerialization.m */; };
 		DD887A93A200A87A51B3D00BD1B80D20 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF10EB9AD67E4F406AA4F339644DF3 /* AFNetworkReachabilityManager.m */; };
 		E23B9A6F533461CB33C0FA6FB59E3AB2 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCF6749129B87BDF87A64E2B59AA40E /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E62C6DA410C9EC95AAAB50138480E8C4 /* TCNRSARequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD53A619E36933641B3789FBD15D487 /* TCNRSARequestSerialization.m */; };
+		E28850345A00398FBEA9CCF5F80D482B /* TCNDataCenterMatchedURLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 739D2573DCCECE95DB81E4FBC7415ECE /* TCNDataCenterMatchedURLItem.m */; };
 		E85D1FE8C1F59F7E5379935ADC4B0693 /* Pods-TCNRequest_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 744673D9521EFF97CBDE132B05704C94 /* Pods-TCNRequest_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8CE998A910D51A2C27CA1E43BED132 /* TCNDeviceInfo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 200F6859F2A5F2640FC7D1545EBDDC61 /* TCNDeviceInfo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF16633DB3C992CF975BE4A2932D41C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F89DDD5A2E3BF7D48202947D3A5FBE /* AFHTTPSessionManager.m */; };
 		EB43B30EF07FD4AE615DD3201B614FCC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BF5B49692E16F4FA8C5861BA3B4F34 /* Foundation.framework */; };
-		ED7461FD8F8535A377400845938B6FC8 /* TCNDataCenterMatchedURLItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C7535183D90438B0D80C9684FBF34E7 /* TCNDataCenterMatchedURLItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECE6361350A9FED8DC2CEA8ABD975551 /* TCNAutoDataCenterStopErrorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6406C3B2EE491206E17609ED095DACFC /* TCNAutoDataCenterStopErrorType.m */; };
+		F105B74173866212B7A623A16B4A23CD /* TCNDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FF447C04FFA8E46E0D72A6C931EE46E /* TCNDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F1CAA2EBDDFF558DEF98684F2479A7AF /* AFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = DAB28D0EE0422BD1C23A0119FFF41123 /* AFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2D899C7AA0D7FC20160091BB9D31CF3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BAFCE80740CD07C50281D379F04C622F /* UIImageView+AFNetworking.m */; };
 		F41A66C1B8D83DEC165BF7EA0FA31813 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345F14673E11B071A1A7B5EF14E3B31E /* AdSupport.framework */; };
-		F53B668CB41814DCDC5F97C160666CAE /* TCNPOSTDataRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F54303FC7BFF95DF73DF5384BD695F /* TCNPOSTDataRequestSerialization.m */; };
 		F84DD74BB7F612DE372F8C051420DF72 /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = E7D3415A80FD2833F3028E4F1A87A922 /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FEF6EACE962EAE70E2EAC5F3C83EF7C8 /* AFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = AC57F856F2D81AA6AF8F48FA4C27CFFA /* AFImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -197,13 +199,12 @@
 		036ED9E0A4D716BEE94D798A5C1B6960 /* TCNDataEncoding.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TCNDataEncoding.modulemap; sourceTree = "<group>"; };
 		042058C99B1535DEDC1BF5D931808FB8 /* TCNDataEncoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TCNDataEncoding.framework; path = TCNDataEncoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		049A3E88EC716CE12B478D23D2EFAE60 /* RegexKitLite-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RegexKitLite-dummy.m"; sourceTree = "<group>"; };
-		0794E89E5FF33C1478C43D089CF5841C /* TCNDataCenterManagerConfigure.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterManagerConfigure.h; sourceTree = "<group>"; };
-		0900827B416DA1E33066A88821B38AFC /* TCNDataCenterManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterManager.h; sourceTree = "<group>"; };
+		04CA4E4CEE856B05C7702CBB7CAFA052 /* TCNDataCenterManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterManager.h; sourceTree = "<group>"; };
+		0725B4BE134CDDFDE524DC69A41A69C7 /* TCNDataCenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenter.m; sourceTree = "<group>"; };
 		0C926B021429FC068FCEAA249E50AD23 /* Pods-TCNRequest_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCNRequest_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0D8E01072FD9ABE71DB0FD386AE5428B /* TCNPOSTDataRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNPOSTDataRequestSerialization.h; sourceTree = "<group>"; };
 		101EC4B8427473D3E4912027F5AF4C88 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10D107CF460279BA2969C5FB4CB266FD /* Pods_TCNRequest_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TCNRequest_Tests.framework; path = "Pods-TCNRequest_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1102F75AFA1E8621DC736223B87B8E3E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterManagerURLSessionTaskSwizzling.h; sourceTree = "<group>"; };
 		125B057223195C0B1D33DEABA131B01D /* TCNHTTPRequestSerialization+Protect.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNHTTPRequestSerialization+Protect.h"; sourceTree = "<group>"; };
 		13B02C40E964DA6A2C26F31F4704ADDB /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		1552C7AB9E4998E8745DE31206C77988 /* Pods-TCNRequest_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCNRequest_Tests-frameworks.sh"; sourceTree = "<group>"; };
@@ -213,13 +214,15 @@
 		1D1D38397FEA7DAC03CDF17219124AE0 /* TCNRSA.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TCNRSA.m; path = TCNDataEncoding/RSA/TCNRSA.m; sourceTree = "<group>"; };
 		200F6859F2A5F2640FC7D1545EBDDC61 /* TCNDeviceInfo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNDeviceInfo-umbrella.h"; sourceTree = "<group>"; };
 		211D1B4F8072064F05418343158CB13E /* Pods-TCNRequest_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCNRequest_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		21B8F4C62C7304B673AD17591A658E66 /* TCNAutoDataCenterStopErrorType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterStopErrorType.m; sourceTree = "<group>"; };
 		2250CE545A559E46F6C2F94C389EBD99 /* TCNRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNRequest.h; sourceTree = "<group>"; };
+		252D9B0FDCEF2065D5B44536E087B0FD /* TCNAutoDataCenterStopErrorType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterStopErrorType.h; sourceTree = "<group>"; };
 		285B769A9D01EB8FA470DBF29AE74E65 /* Pods-TCNRequest_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCNRequest_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		287E21B2DEB6F55DF2E26A215CDF9651 /* TCNDataCenterManagerConfigure.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterManagerConfigure.h; sourceTree = "<group>"; };
 		2CAF5B3E70C5C991789D3894831B6966 /* RegexKitLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegexKitLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DDAF4462F02BF18C1CC15D969A3B758 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFSecurityPolicy.h; path = AFNetworking/AFSecurityPolicy.h; sourceTree = "<group>"; };
 		2E56B9F67D7FD441192E53D6C9A7E22A /* AFNetworking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-prefix.pch"; sourceTree = "<group>"; };
 		2EEF29568CD6B759FD53249965280352 /* RegexKitLite-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RegexKitLite-umbrella.h"; sourceTree = "<group>"; };
+		2F5B0F4E84495EA2633CFEC2342684F7 /* TCNAutoDataCenterManagerConfigure.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterManagerConfigure.h; sourceTree = "<group>"; };
 		300FF793914987D9674A142976BA375A /* Pods-TCNRequest_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCNRequest_Tests-resources.sh"; sourceTree = "<group>"; };
 		33EDE8BE785815F6C586464B2C8F62D2 /* Pods-TCNRequest_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TCNRequest_Tests-umbrella.h"; sourceTree = "<group>"; };
 		345F14673E11B071A1A7B5EF14E3B31E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
@@ -229,11 +232,9 @@
 		396C4F0BFB1E921C1AF97D3B00D04B52 /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		3A9B2BC0D7F2C7798ED21BABEA2404AB /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		3B2970EA46BFA85E7F110B8DE506A750 /* TCNBase64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCNBase64.h; path = TCNDataEncoding/Base64/TCNBase64.h; sourceTree = "<group>"; };
-		425099A27A35258F5D53477D40242A80 /* TCNDataCenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenter.m; sourceTree = "<group>"; };
 		45F89DDD5A2E3BF7D48202947D3A5FBE /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		46B4D5178967E68EF6280BD3E35F7A7E /* TCNDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCNDeviceInfo.h; path = TCNDeviceInfo/Classes/TCNDeviceInfo.h; sourceTree = "<group>"; };
 		4773FA46F20A4418627E901DD498C27C /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+AFNetworking.m"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
-		48A5E5ADA313A3060B6EA88D8D206048 /* TCNDataCenterMatchedURLItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterMatchedURLItem.m; sourceTree = "<group>"; };
 		4D58776E7130D8F77F0EE8596D57B57D /* TCNDeviceInfo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCNDeviceInfo-dummy.m"; sourceTree = "<group>"; };
 		4E6699CFEA0325BB6FE9F8069D5BB68E /* RegexKitLite.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RegexKitLite.xcconfig; sourceTree = "<group>"; };
 		5075ADB8E63C6B595A7A0D5119F6D212 /* TCNDataEncoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TCNDataEncoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,16 +252,17 @@
 		5EBF10EB9AD67E4F406AA4F339644DF3 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		60A30482ED87722BD4E4B20368863914 /* TCNDeviceInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TCNDeviceInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A0C23C8260B30110F6F237C932E04C /* TCNHTTPRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNHTTPRequestSerialization.h; sourceTree = "<group>"; };
+		6406C3B2EE491206E17609ED095DACFC /* TCNAutoDataCenterStopErrorType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterStopErrorType.m; sourceTree = "<group>"; };
+		655A29BC08F8245C84A6C23E9C84414E /* TCNAutoDataCenterManagerConfigure.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterManagerConfigure.m; sourceTree = "<group>"; };
 		665863BC78C091F4E8DA91B014A11C01 /* TCNRSARequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNRSARequestSerialization.h; sourceTree = "<group>"; };
-		677AC2BD2938262331A262A9346E6426 /* TCNDataCenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenter.h; sourceTree = "<group>"; };
 		67D2C8E600A4371A8E86AA8FD0E29ABA /* NSString+JavaScriptString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+JavaScriptString.h"; path = "TCNDataEncoding/JavaScriptString/NSString+JavaScriptString.h"; sourceTree = "<group>"; };
 		6CCF6749129B87BDF87A64E2B59AA40E /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
 		6F4B970FBB51969B7F1057ACFCBEDE60 /* TCNRequestError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNRequestError.m; sourceTree = "<group>"; };
 		7004582D01917638BD73C6A00CBEE7D9 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActivityIndicatorView+AFNetworking.h"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
 		70BB1AA84CF7AEA5E4ED837612AD1414 /* Pods-TCNRequest_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCNRequest_Example.release.xcconfig"; sourceTree = "<group>"; };
 		71A9F8AF6E5F0EAA1E0A835790870534 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
-		72E29E103100748B97B2A15B0421F84F /* TCNAutoDataCenterManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterManager.h; sourceTree = "<group>"; };
 		734FA2E08C88A575998F1E56B73E1EE9 /* TCNRSA.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCNRSA.h; path = TCNDataEncoding/RSA/TCNRSA.h; sourceTree = "<group>"; };
+		739D2573DCCECE95DB81E4FBC7415ECE /* TCNDataCenterMatchedURLItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterMatchedURLItem.m; sourceTree = "<group>"; };
 		740FD33FC135B1F8FB15D065F749C48F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		744673D9521EFF97CBDE132B05704C94 /* Pods-TCNRequest_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TCNRequest_Example-umbrella.h"; sourceTree = "<group>"; };
 		7A3222D25F3A75D9218AF3D0FEBCCABE /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,14 +270,12 @@
 		849A62C982F9E25D7261AE47DC4F7B34 /* TCNHTTPZhanqiTrackRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNHTTPZhanqiTrackRequestSerialization.h; sourceTree = "<group>"; };
 		893C419E87181655E8A3294A8D4CE659 /* TCNDataEncoding-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNDataEncoding-prefix.pch"; sourceTree = "<group>"; };
 		8C079C4CF39C4F4F0EEB65847CF4149C /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+AFNetworking.h"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
-		8C7535183D90438B0D80C9684FBF34E7 /* TCNDataCenterMatchedURLItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterMatchedURLItem.h; sourceTree = "<group>"; };
-		8D6A23B92EF33BC521FF8F92D55FE762 /* TCNDataCenterManagerConfigure.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterManagerConfigure.m; sourceTree = "<group>"; };
 		8D76CADA0CECA9F3F6C0BFE233CF405A /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		8E7F97F2B50F522CF31C27FE78DD487A /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIActivityIndicatorView+AFNetworking.m"; path = "UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
+		8FF447C04FFA8E46E0D72A6C931EE46E /* TCNDataCenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenter.h; sourceTree = "<group>"; };
 		912AEA53212F0E65E65F78565377F47A /* TCNDataEncoding-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNDataEncoding-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		948C40EDEC2DF8559600C52654E1BD75 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		96254B2C8156414F969D2D548FB4FBC9 /* TCNDataCenterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterManager.m; sourceTree = "<group>"; };
 		9867CE0F9F8D5AC42EB33CAB7392AD12 /* AFImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFImageDownloader.m; path = "UIKit+AFNetworking/AFImageDownloader.m"; sourceTree = "<group>"; };
 		9AF102203DEFAC6E752B89BE18FFFBCA /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		9BC6B1FF4E597C425E879B6F63E8B8DC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -283,18 +283,20 @@
 		9C9B23AC010323CA425A686CDE3B2B69 /* Pods-TCNRequest_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCNRequest_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		9DAEA8E3A026740D124B0316FEF2F13D /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
 		9DFA2CE934FC8A3986045577D652B103 /* RegexKitLite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		A1B5289CFB6334359C6653F13F69C35F /* TCNDataCenterManagerConfigure.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterManagerConfigure.m; sourceTree = "<group>"; };
 		A4093148642AB4E3148AB3562E84E90E /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = AFNetworking/AFURLResponseSerialization.h; sourceTree = "<group>"; };
 		A806DD6F2B04161CE39A99208385F868 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		AA27F0ACA883524FA694E58824EBEB19 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterManagerURLSessionTaskSwizzling.h; sourceTree = "<group>"; };
 		AA2863932FB7EDAF3DA6106ACA57EB2D /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = AFNetworking/AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
 		AA433AB7A429E6B681C5E7B082FB3858 /* TCNRequest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCNRequest.xcconfig; sourceTree = "<group>"; };
 		AC09E53B639CE9A6357366CF0F6E6936 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC23B90394E887DD6A6E7254C24A8C65 /* TCNAutoDataCenterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterManager.m; sourceTree = "<group>"; };
 		AC457D67EFF7518DF4906AAFF8E303A3 /* Pods-TCNRequest_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCNRequest_Example-dummy.m"; sourceTree = "<group>"; };
 		AC57F856F2D81AA6AF8F48FA4C27CFFA /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		ADA28C2FF672CE37C36064F69EB349EC /* TCNDeviceInfo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNDeviceInfo-prefix.pch"; sourceTree = "<group>"; };
 		ADB425C3692AE09BC9A9A115D0AC2C6C /* Pods-TCNRequest_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCNRequest_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AE46832475DFA0387892D81DBBEDAFC6 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		B0FBA62540120EAA709FB3D05FDADF4E /* Pods-TCNRequest_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCNRequest_Tests-dummy.m"; sourceTree = "<group>"; };
+		B266C499EF9F2826A9EF31B66365F875 /* TCNDataCenterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNDataCenterManager.m; sourceTree = "<group>"; };
 		B425B7A4F28A37B1191A22050916D301 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m"; sourceTree = "<group>"; };
 		B43E07805E21531F9F39374BAFAC6D22 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9F54303FC7BFF95DF73DF5384BD695F /* TCNPOSTDataRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNPOSTDataRequestSerialization.m; sourceTree = "<group>"; };
@@ -302,18 +304,20 @@
 		BAFCE80740CD07C50281D379F04C622F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		BB8DC0B8B2BFB1BB45527B2303265290 /* TCNDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TCNDeviceInfo.m; path = TCNDeviceInfo/Classes/TCNDeviceInfo.m; sourceTree = "<group>"; };
 		BC51F729A397DBECCBE9190A133F347A /* NSData+Compress.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+Compress.h"; path = "TCNDataEncoding/Compress/NSData+Compress.h"; sourceTree = "<group>"; };
+		BEEB61BBCE71BCBE6449AB3111367C95 /* TCNAutoDataCenterManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterManager.h; sourceTree = "<group>"; };
 		C12B270BE20AE9DC3FE139FA432E8C39 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		C1B3A22D5D812BE8350AD9A17DE6E963 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3CC5E22D99B21CEF8C79AB0F0A07A6C /* TCNHTTPZhanqiTrackRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNHTTPZhanqiTrackRequestSerialization.m; sourceTree = "<group>"; };
+		C563E335FE3010E3F0A097E98300F17E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterManagerURLSessionTaskSwizzling.m; sourceTree = "<group>"; };
 		C58700ED1F265A51B077F218EEF8FD76 /* TCNHTTPTrackRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNHTTPTrackRequestSerialization.m; sourceTree = "<group>"; };
 		CA74EEFE9A2051D2ECE4A3145F07F6C0 /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIProgressView+AFNetworking.m"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
 		CAA1EA612F11D7DF04B05E82F2B9C496 /* TCNDataEncoding-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCNDataEncoding-dummy.m"; sourceTree = "<group>"; };
 		CB1430E71BBCF41AF362534A7BC65694 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		CD09841F7C05034999C7844D060E546F /* TCNRequest.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TCNRequest.modulemap; sourceTree = "<group>"; };
 		CD2F1525538B2D543AFC07F65FF980AB /* TCNDeviceInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TCNDeviceInfo.framework; path = TCNDeviceInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1F850FFA7CD8319A44E30D9A25170DD /* TCNAutoDataCenterStopErrorType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNAutoDataCenterStopErrorType.h; sourceTree = "<group>"; };
 		D4400FBB65C48B29CE44BB6E788877CD /* TCNRequestError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNRequestError.h; sourceTree = "<group>"; };
 		D6CD45C32EE3CC67648BB4C141CB0BF8 /* Pods-TCNRequest_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCNRequest_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D752E2D5491D8E7D851F496CB25C50B4 /* TCNAutoDataCenterManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterManager.m; sourceTree = "<group>"; };
 		D9CFF23E76F04D8DBCEE24A8086395F0 /* TCNRequest-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNRequest-umbrella.h"; sourceTree = "<group>"; };
 		DAB28D0EE0422BD1C23A0119FFF41123 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		DCD57F2FD9D7D66B3A1DECDF4C8C00B1 /* Pods-TCNRequest_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCNRequest_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -328,12 +332,12 @@
 		EFE171E10CDF248A3734A076D30F1A3D /* RegexKitLite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		F0C9ECB0292C808BE0ABC8A22D58A19D /* TCNRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TCNRequest.framework; path = TCNRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F235E82013698510CB266A1D863B8E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0F7FF9C5B1D5B2A76591CB3AF62F3C3 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCNAutoDataCenterManagerURLSessionTaskSwizzling.m; sourceTree = "<group>"; };
 		F115DA401333B93A31D5C37CDDB59D6D /* TCNBase64.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TCNBase64.m; path = TCNDataEncoding/Base64/TCNBase64.m; sourceTree = "<group>"; };
 		F287DF484CC4D78FF64F7BBA8D3BE9E2 /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFAutoPurgingImageCache.m; path = "UIKit+AFNetworking/AFAutoPurgingImageCache.m"; sourceTree = "<group>"; };
 		F69D9C84B4AC296B1B53D62DFB003280 /* Pods-TCNRequest_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCNRequest_Example-resources.sh"; sourceTree = "<group>"; };
 		F6D2A20B63BACE60F22C73206262EE41 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6F1F5F5DFED1081F66B5382AE2D978B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8F8645C26D5A289FA775D448E3E1C2E /* TCNDataCenterMatchedURLItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCNDataCenterMatchedURLItem.h; sourceTree = "<group>"; };
 		FCA0BC525BE187ECB47270A2F1665782 /* TCNNSString+UrlEncode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "TCNNSString+UrlEncode.m"; path = "TCNDataEncoding/UrlEncode/TCNNSString+UrlEncode.m"; sourceTree = "<group>"; };
 		FCCB568610C91782077EEF946A57E597 /* TCNRequest-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCNRequest-prefix.pch"; sourceTree = "<group>"; };
 		FEACB6AABD49BF7270D01C2067DE367A /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
@@ -491,7 +495,7 @@
 		2F4201B0DDED2217F536893A8C77829F /* TCNRequest */ = {
 			isa = PBXGroup;
 			children = (
-				71DA9118C074991E0321AFF850334613 /* Classes */,
+				B55E57A17D40B2E29BAC9D9497C0EC67 /* Classes */,
 			);
 			name = TCNRequest;
 			path = TCNRequest;
@@ -601,6 +605,30 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		5D956CCD8EBC24CD5CAFF74A6A0B771B /* AutoDataCenetr */ = {
+			isa = PBXGroup;
+			children = (
+				BEEB61BBCE71BCBE6449AB3111367C95 /* TCNAutoDataCenterManager.h */,
+				D752E2D5491D8E7D851F496CB25C50B4 /* TCNAutoDataCenterManager.m */,
+				2F5B0F4E84495EA2633CFEC2342684F7 /* TCNAutoDataCenterManagerConfigure.h */,
+				655A29BC08F8245C84A6C23E9C84414E /* TCNAutoDataCenterManagerConfigure.m */,
+				AA27F0ACA883524FA694E58824EBEB19 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */,
+				C563E335FE3010E3F0A097E98300F17E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */,
+				252D9B0FDCEF2065D5B44536E087B0FD /* TCNAutoDataCenterStopErrorType.h */,
+				6406C3B2EE491206E17609ED095DACFC /* TCNAutoDataCenterStopErrorType.m */,
+				8FF447C04FFA8E46E0D72A6C931EE46E /* TCNDataCenter.h */,
+				0725B4BE134CDDFDE524DC69A41A69C7 /* TCNDataCenter.m */,
+				04CA4E4CEE856B05C7702CBB7CAFA052 /* TCNDataCenterManager.h */,
+				B266C499EF9F2826A9EF31B66365F875 /* TCNDataCenterManager.m */,
+				287E21B2DEB6F55DF2E26A215CDF9651 /* TCNDataCenterManagerConfigure.h */,
+				A1B5289CFB6334359C6653F13F69C35F /* TCNDataCenterManagerConfigure.m */,
+				F8F8645C26D5A289FA775D448E3E1C2E /* TCNDataCenterMatchedURLItem.h */,
+				739D2573DCCECE95DB81E4FBC7415ECE /* TCNDataCenterMatchedURLItem.m */,
+			);
+			name = AutoDataCenetr;
+			path = AutoDataCenetr;
+			sourceTree = "<group>";
+		};
 		66764B9CF12703F240DB0A3AE602C2B5 /* UrlEncode */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,15 +636,6 @@
 				FCA0BC525BE187ECB47270A2F1665782 /* TCNNSString+UrlEncode.m */,
 			);
 			name = UrlEncode;
-			sourceTree = "<group>";
-		};
-		71DA9118C074991E0321AFF850334613 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				7A9C0BD950E78CB1B4144849C1349BEE /* AutoDataCenetr */,
-			);
-			name = Classes;
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		72F759C101D26A3361A2FA19B84DF555 /* Products */ = {
@@ -640,28 +659,6 @@
 			);
 			name = Classes;
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		7A9C0BD950E78CB1B4144849C1349BEE /* AutoDataCenetr */ = {
-			isa = PBXGroup;
-			children = (
-				72E29E103100748B97B2A15B0421F84F /* TCNAutoDataCenterManager.h */,
-				AC23B90394E887DD6A6E7254C24A8C65 /* TCNAutoDataCenterManager.m */,
-				1102F75AFA1E8621DC736223B87B8E3E /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h */,
-				F0F7FF9C5B1D5B2A76591CB3AF62F3C3 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m */,
-				D1F850FFA7CD8319A44E30D9A25170DD /* TCNAutoDataCenterStopErrorType.h */,
-				21B8F4C62C7304B673AD17591A658E66 /* TCNAutoDataCenterStopErrorType.m */,
-				677AC2BD2938262331A262A9346E6426 /* TCNDataCenter.h */,
-				425099A27A35258F5D53477D40242A80 /* TCNDataCenter.m */,
-				0900827B416DA1E33066A88821B38AFC /* TCNDataCenterManager.h */,
-				96254B2C8156414F969D2D548FB4FBC9 /* TCNDataCenterManager.m */,
-				0794E89E5FF33C1478C43D089CF5841C /* TCNDataCenterManagerConfigure.h */,
-				8D6A23B92EF33BC521FF8F92D55FE762 /* TCNDataCenterManagerConfigure.m */,
-				8C7535183D90438B0D80C9684FBF34E7 /* TCNDataCenterMatchedURLItem.h */,
-				48A5E5ADA313A3060B6EA88D8D206048 /* TCNDataCenterMatchedURLItem.m */,
-			);
-			name = AutoDataCenetr;
-			path = AutoDataCenetr;
 			sourceTree = "<group>";
 		};
 		7CD30D48463E805ED6D48D244571E237 /* Error */ = {
@@ -830,6 +827,15 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		B55E57A17D40B2E29BAC9D9497C0EC67 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5D956CCD8EBC24CD5CAFF74A6A0B771B /* AutoDataCenetr */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		B91808EE3227E45AAF147EB0F8FAF846 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -964,29 +970,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A78E990481149FEC6B87371FA8EE9CA6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E093DFE6D2D2CA817E2898FF656B32D /* TCNAutoDataCenterManager.h in Headers */,
-				8A87D084C11ACDA7EE47EC58A0D9983D /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h in Headers */,
-				C4461AE8940A60320ADD5B91114C0F2F /* TCNAutoDataCenterStopErrorType.h in Headers */,
-				3214C04C250EB931DD9ECDF4A04FDAB9 /* TCNDataCenter.h in Headers */,
-				817F1563C4E2C39A3311B52102DC4E31 /* TCNDataCenterManager.h in Headers */,
-				BB5E40FCE81B5EE1E16B719D602F2210 /* TCNDataCenterManagerConfigure.h in Headers */,
-				ED7461FD8F8535A377400845938B6FC8 /* TCNDataCenterMatchedURLItem.h in Headers */,
-				5BE20A03BC76D61B0F6B8EAA2F8FA71F /* TCNHTTPRequestSerialization+Protect.h in Headers */,
-				AD309EC97ADFFD71FC9A6223C9862AC8 /* TCNHTTPRequestSerialization.h in Headers */,
-				994CF173C43D92344F81380779461836 /* TCNHTTPTrackRequestSerialization.h in Headers */,
-				1291E827E1BDEBC5C0D3F9ED1A9631E4 /* TCNHTTPZhanqiTrackRequestSerialization.h in Headers */,
-				27569A06A08EB02F555829D23F609701 /* TCNPOSTDataRequestSerialization.h in Headers */,
-				727439EAE4D4618A9CD239787ACE98AB /* TCNRequest-umbrella.h in Headers */,
-				B373732FF9DC03930F6259ECA793BAF6 /* TCNRequest.h in Headers */,
-				30922FCCB13A309CEE6C5BAA10C268C0 /* TCNRequestError.h in Headers */,
-				19CB8CB02070E680D78346D5F36D6672 /* TCNRSARequestSerialization.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BF51EB9C179540355326BC18C9FAF5E5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1010,6 +993,30 @@
 				F84DD74BB7F612DE372F8C051420DF72 /* UIProgressView+AFNetworking.h in Headers */,
 				00C05031BBA5BA48A00FE41348F41BDA /* UIRefreshControl+AFNetworking.h in Headers */,
 				51047C1945103943F70BEADE83725630 /* UIWebView+AFNetworking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB8B86E7BF64DB33D9E18E56306D0FC7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D7AE647C95D6E298FF0D6927055011D /* TCNAutoDataCenterManager.h in Headers */,
+				8296CF0B73318A0470218BAA65F41A34 /* TCNAutoDataCenterManagerConfigure.h in Headers */,
+				858B89C9EE8B567A6AEAEC6357FB9F2A /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.h in Headers */,
+				3FB0B46F2B14B041DD25DF023A0AE141 /* TCNAutoDataCenterStopErrorType.h in Headers */,
+				F105B74173866212B7A623A16B4A23CD /* TCNDataCenter.h in Headers */,
+				5EB3DB3AAB6AB64DCF727833C4DE3DA5 /* TCNDataCenterManager.h in Headers */,
+				833AD032C80EF3EBA54D71FE225BAF06 /* TCNDataCenterManagerConfigure.h in Headers */,
+				8220E3F3B58B944B31677202C38C9A94 /* TCNDataCenterMatchedURLItem.h in Headers */,
+				817580B3FA7D3258AB5FC2ECE7D0FBBE /* TCNHTTPRequestSerialization+Protect.h in Headers */,
+				6C5B5827C45F0A831E8B9D77BD5F60B3 /* TCNHTTPRequestSerialization.h in Headers */,
+				25C402D5AFE18F2BAD6632704BFCD7B9 /* TCNHTTPTrackRequestSerialization.h in Headers */,
+				47B6412FF4B4DB6C3BE13F99D8D48B46 /* TCNHTTPZhanqiTrackRequestSerialization.h in Headers */,
+				78CF2EB3FC0F785E1938E9413D245A1D /* TCNPOSTDataRequestSerialization.h in Headers */,
+				AEFD45A79AA96B3DD4AE2A14CF530816 /* TCNRequest-umbrella.h in Headers */,
+				A5E85C321943FC492B77D162C10FFADA /* TCNRequest.h in Headers */,
+				2F054D1C49B7CF2505443C3119CAA4EA /* TCNRequestError.h in Headers */,
+				01E48D25EF9B8BFAA269814AAF09C110 /* TCNRSARequestSerialization.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,9 +1112,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE983840B43D308AB3C16EB41343175D /* Build configuration list for PBXNativeTarget "TCNRequest" */;
 			buildPhases = (
-				4AAFB7127A3D0D1060D664EC24F6BF01 /* Sources */,
+				972F2773CD580AC873D04F3D10999EE7 /* Sources */,
 				20B6C9C704D54060A677F6239A93B58E /* Frameworks */,
-				A78E990481149FEC6B87371FA8EE9CA6 /* Headers */,
+				CB8B86E7BF64DB33D9E18E56306D0FC7 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -1219,27 +1226,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4AAFB7127A3D0D1060D664EC24F6BF01 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8996F920DD408034FD32DBFFC8B47EF9 /* TCNAutoDataCenterManager.m in Sources */,
-				BAB2C7AABBCC0F8F07A8E58EFCCC27E9 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m in Sources */,
-				28E29063CDD4C98A2E43C886461C6FA6 /* TCNAutoDataCenterStopErrorType.m in Sources */,
-				2A66658F7DA313E691468C70A5E166C7 /* TCNDataCenter.m in Sources */,
-				A21D37C91DEA42CF8B777390B3B68ABD /* TCNDataCenterManager.m in Sources */,
-				18FF7CD7CA7C59DB87E7046A9F3481E3 /* TCNDataCenterManagerConfigure.m in Sources */,
-				409C35098DE76AFB549F11CE8E1FD0F8 /* TCNDataCenterMatchedURLItem.m in Sources */,
-				A527EEB3FA19DB4FD1E0DFC795D6AB1C /* TCNHTTPRequestSerialization.m in Sources */,
-				486780C60A269FE70399319FC2911A87 /* TCNHTTPTrackRequestSerialization.m in Sources */,
-				D64943FBC7F22B5327D0DBC8C0FC61E0 /* TCNHTTPZhanqiTrackRequestSerialization.m in Sources */,
-				F53B668CB41814DCDC5F97C160666CAE /* TCNPOSTDataRequestSerialization.m in Sources */,
-				9CFA034111ADFD781BF74D1524ED862C /* TCNRequest-dummy.m in Sources */,
-				A3B9E7BB8572AD72A1E97C180F1C864E /* TCNRequestError.m in Sources */,
-				E62C6DA410C9EC95AAAB50138480E8C4 /* TCNRSARequestSerialization.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6A10001116C48A3F5FDB7E1BC749EECD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1260,6 +1246,28 @@
 				34C88657FE7ABE9F833623F94952D253 /* UIProgressView+AFNetworking.m in Sources */,
 				B16A078FC7FBC172A266A336AEF7F673 /* UIRefreshControl+AFNetworking.m in Sources */,
 				7CE16B1BF75DF396768A0A3CFD968DB1 /* UIWebView+AFNetworking.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		972F2773CD580AC873D04F3D10999EE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0895EA6DBB1860C8704504D4CE6EE8DF /* TCNAutoDataCenterManager.m in Sources */,
+				8AB679328CD7720D3C5E31D8254200FB /* TCNAutoDataCenterManagerConfigure.m in Sources */,
+				67000FD2EE4BAC36FD5B9C8153B3D751 /* TCNAutoDataCenterManagerURLSessionTaskSwizzling.m in Sources */,
+				ECE6361350A9FED8DC2CEA8ABD975551 /* TCNAutoDataCenterStopErrorType.m in Sources */,
+				B221D0641FF178BA94312F9170ACB693 /* TCNDataCenter.m in Sources */,
+				934C4576989392DAC9B972C4DFDFF0E6 /* TCNDataCenterManager.m in Sources */,
+				5447D85B778DB239B8A7B1E7681A5FEF /* TCNDataCenterManagerConfigure.m in Sources */,
+				E28850345A00398FBEA9CCF5F80D482B /* TCNDataCenterMatchedURLItem.m in Sources */,
+				434AA352A179BFBB4616C4642DAF7FB1 /* TCNHTTPRequestSerialization.m in Sources */,
+				52071C352AB127FAA83F5A485AE7847C /* TCNHTTPTrackRequestSerialization.m in Sources */,
+				90F108F0ACA1B29C2504240520837DEB /* TCNHTTPZhanqiTrackRequestSerialization.m in Sources */,
+				C63196AA6534C71BFB9758BB09D99DD0 /* TCNPOSTDataRequestSerialization.m in Sources */,
+				29EACD67959C1E7F263BC8BBB98C4EDF /* TCNRequest-dummy.m in Sources */,
+				94EF97F27E4463C642DB01BCFA3A8846 /* TCNRequestError.m in Sources */,
+				D7F0D4E0E922EF6B0D160B2C04401645 /* TCNRSARequestSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

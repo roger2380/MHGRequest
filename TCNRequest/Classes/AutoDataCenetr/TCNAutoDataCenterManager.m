@@ -36,6 +36,15 @@ NS_ASSUME_NONNULL_END
 
 @implementation TCNAutoDataCenterManager
 
++ (void)initializationWithConfig:(TCNAutoDataCenterManagerConfigure *)config {
+  TCNDataCenterManagerConfigure *dataCenterManagerConfig = [[TCNDataCenterManagerConfigure alloc] init];
+  dataCenterManagerConfig.getTokenBlock = config.getTokenBlock;
+  dataCenterManagerConfig.configureURLString = config.configureURLString;
+  dataCenterManagerConfig.interval = config.interval;
+  
+  [TCNDataCenterManager initializationWithConfig:dataCenterManagerConfig];
+}
+
 - (instancetype)initWithBaseURL:(NSURL *)url sessionConfiguration:(NSURLSessionConfiguration *)configuration {
   if (self = [super initWithBaseURL:url sessionConfiguration:configuration]) {
     TCNAutoDataCenterStopErrorType *type = [[TCNAutoDataCenterStopErrorType alloc]initWithErrorDomain:TCNRequestErrorDomain

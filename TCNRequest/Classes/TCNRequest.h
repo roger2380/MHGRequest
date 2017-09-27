@@ -6,12 +6,18 @@
 //  Copyright © 2017年 truecolor. All rights reserved.
 //
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// 多线路请求
 #import <TCNRequest/TCNAutoDataCenterManager.h>
-#import <TCNRequest/TCNDataCenterManager.h>
+#import <TCNRequest/TCNAutoDataCenterManagerConfigure.h>
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// 请求数据组装
 #import <TCNRequest/TCNHTTPRequestSerialization.h>
 #import <TCNRequest/TCNRSARequestSerialization.h>
 #import <TCNRequest/TCNHTTPTrackRequestSerialization.h>
 #import <TCNRequest/TCNHTTPZhanqiTrackRequestSerialization.h>
 #import <TCNRequest/TCNPOSTDataRequestSerialization.h>
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 
