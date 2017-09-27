@@ -53,6 +53,7 @@ Pod::Spec.new do |s|
     autoDataCenetr.dependency 'AFNetworking', '~> 3.1.0'
     autoDataCenetr.dependency 'RegexKitLite', '~> 4.0'
     autoDataCenetr.dependency 'TCNDeviceInfo', '~> 0.0.03'
+    autoDataCenetr.dependency 'TCNDataEncoding', '~> 0.0.5'
   end
 
   s.subspec 'RequestSerialization' do |requestSerialization|

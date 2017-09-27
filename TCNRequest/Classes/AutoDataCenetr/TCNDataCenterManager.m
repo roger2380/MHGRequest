@@ -11,92 +11,117 @@
 #import "TCNDataCenter.h"
 #import "TCNAutoDataCenterManager.h"
 #import <TCNDeviceInfo/TCNDeviceInfo.h>
+#import <TCNDataEncoding/TCNNSString+UrlEncode.h>
 
 static NSString *TCNDataCenterManagerPriorityUserdefaultsKey = @"com.TCNRequest.DataCenterPriorityUserdefaultsKey";
 static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
+
+static TCNDataCenterManager *shareManager = nil;
 
 @interface TCNDataCenterManager()
 
 @property (nonatomic, strong) NSArray<TCNDataCenter *> *dataCenters;
 
+@property (nonatomic, copy) TCNDCMCGetTokenBlock getTokenBlock;
+
+@property (nonatomic, copy) NSString *configureURLString;
+
+@property (nonatomic, assign) NSTimeInterval interval;
+
+@property (nonatomic, copy) NSString *cachePath;
+
+@property (nonatomic, assign) NSTimeInterval lastLoadFromServerSuccessTime;
+
+@property (nonatomic, assign) BOOL isLoadingFromServer;
+
 @end
 
 @implementation TCNDataCenterManager
 
-+ (instancetype)defaultManager {
-  static TCNDataCenterManager *manager;
+#pragma mark - 类方法
+
++ (void)initializationWithConfig:(TCNDataCenterManagerConfigure *)config {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    manager = [[TCNDataCenterManager alloc] init];
+    shareManager = [[self alloc] initWithConfig:config];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      [shareManager loadConfigurationFromServer];
+    });
   });
-  return manager;
 }
 
-- (id)init {
-  self = [super init];
-  if (self) {
++ (NSArray<TCNDataCenterMatchedURLItem *> *)urlsMatchedWithOriginURL:(NSString *)url {
+  return [shareManager urlsMatchedWithOriginURL:url];
+}
+
++ (void)requestSuccessWithItem:(TCNDataCenterMatchedURLItem *)item {
+  [shareManager requestSuccessWithItem:item];
+}
+
+#pragma mark - 实例方法
+
+- (id)initWithConfig:(TCNDataCenterManagerConfigure *)config {
+  if (self = [super init]) {
+    _getTokenBlock = [config.getTokenBlock copy];
+    _configureURLString = [config.configureURLString copy];
+    _interval = config.interval;
     [self loadConfigurationFromCache];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
   }
   return self;
 }
 
-+ (NSString *)cachePath {
-  static NSString *documentsDirectory;
-  static dispatch_once_t documentsDirectoryOnceToken;
-  dispatch_once(&documentsDirectoryOnceToken, ^{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    documentsDirectory = [paths objectAtIndex:0];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"tcnrequest"];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"dataCenters"];
-    NSFileManager* manager = [NSFileManager defaultManager];
-    BOOL isDir = NO;
-    BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
-    
-#ifdef DEBUG
-    if (!isDirExist) {
-      BOOL success = [manager createDirectoryAtPath:documentsDirectory
-                        withIntermediateDirectories:YES
-                                         attributes:nil
-                                              error:nil];
-      NSAssert(success, @"创建存放dataCenter数据文件夹失败");
-    } else {
-      NSAssert(isDir, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
-    }
-#else
-    if (!isDirExist) {
-      [manager createDirectoryAtPath:documentsDirectory
-         withIntermediateDirectories:YES
-                          attributes:nil
-                               error:nil];
-    }
-#endif
-  });
-  return documentsDirectory;
-}
-
-- (void)loadConfigurationWithURL:(NSString *)url
-              currentAccessToken:(NSString *)token {
-  if (![url isKindOfClass:[NSString class]] || url.length == 0) return;
+- (void)loadConfigurationFromServer {
+  if (self.isLoadingFromServer) return;
+  if ([NSDate date].timeIntervalSince1970 - self.lastLoadFromServerSuccessTime < self.interval) return;
+  if (![self.configureURLString isKindOfClass:[NSString class]] || self.configureURLString.length == 0) return;
   
-  NSString *resultURL = url;
-  NSMutableDictionary<NSString *, NSString *> *dict = [[NSMutableDictionary alloc]
-                                                       initWithDictionary:[TCNDeviceInfo universalURLParameters]];
+  self.isLoadingFromServer = YES;
   
-  if ([token isKindOfClass:[NSString class]] && token.length > 0) {
-    [dict setObject:token forKey:@"access_token"];
-    [dict setObject:token forKey:@"_token"];
+  NSMutableDictionary *urlParametersDict = [[TCNDeviceInfo universalURLParameters] mutableCopy];
+  NSMutableDictionary *headerParametersDict = [[TCNDeviceInfo universalHTTPHeadersParameters] mutableCopy];
+  
+  if (self.getTokenBlock) {
+     NSString *token = self.getTokenBlock();
+    if ([token isKindOfClass:[NSString class]] && token.length > 0) {
+      [urlParametersDict setObject:token forKey:@"access_token"];
+      [urlParametersDict setObject:token forKey:@"_token"];
+      [headerParametersDict setObject:token forKey:@"Access-Token"];
+    }
   }
   
-  NSString *query = AFQueryStringFromParameters(dict);
-  if (query && query.length > 0) {
-    resultURL = [resultURL stringByAppendingFormat:[NSURL URLWithString:resultURL].query ? @"&%@" : @"?%@", query];
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 添加URL通用参数
+  
+  NSString *resultURLString = self.configureURLString;
+  NSString *query = AFQueryStringFromParameters(urlParametersDict);
+  
+  if ([NSURL URLWithString:resultURLString].query) {
+    resultURLString = [resultURLString stringByAppendingFormat:@"&%@", query];
+  } else {
+    resultURLString = [resultURLString stringByAppendingFormat:@"?%@", query];
   }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 添加Header通用参数
   
   TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
   
-  [manager autoDataCenterGET:resultURL
+  for (NSString *key in headerParametersDict) {
+    NSString *value = [headerParametersDict objectForKey:key];
+    
+    [manager.requestSerializer setValue:value forHTTPHeaderField:key];
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  [manager autoDataCenterGET:resultURLString
                   parameters:nil
                      success:^(id  _Nullable responseObject) {
+                       self.isLoadingFromServer = NO;
                        if (![responseObject isKindOfClass:[NSDictionary class]]) return;
                        NSString *status = [responseObject objectForKey:@"status"];
                        if (![status isKindOfClass:[NSString class]]) return;
@@ -104,6 +129,7 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
                        NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
                        if (![arr isKindOfClass:[NSArray class]]) return;
                        [self loadConfigurationWithArray:arr];
+                       self.lastLoadFromServerSuccessTime = [NSDate date].timeIntervalSince1970;
                      }
                      failure:nil];
 }
@@ -149,11 +175,13 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
 }
 
 - (void)saveConfigurationToCache {
-  NSString *fileName, *path;
-  for (TCNDataCenter *dataCenter in self.dataCenters) {
-    fileName = [NSString stringWithFormat:@"%@.%@", dataCenter.name, TCNDataCenterSaveFileExtension];
-    path = [[[self class] cachePath] stringByAppendingPathComponent:fileName];
-    [NSKeyedArchiver archiveRootObject:dataCenter toFile:path];
+  if (self.cachePath) {
+    NSString *fileName, *path;
+    for (TCNDataCenter *dataCenter in self.dataCenters) {
+      fileName = [NSString stringWithFormat:@"%@.%@", dataCenter.name, TCNDataCenterSaveFileExtension];
+      path = [self.cachePath stringByAppendingPathComponent:fileName];
+      [NSKeyedArchiver archiveRootObject:dataCenter toFile:path];
+    }
   }
   [self saveDataCenterPriority];
 }
@@ -168,8 +196,9 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
 }
 
 - (void)loadConfigurationFromCache {
+  NSString *folderPath = self.cachePath;
+  if (!folderPath) return;
   NSFileManager* manager = [NSFileManager defaultManager];
-  NSString *folderPath = [[self class] cachePath];
   if (![manager fileExistsAtPath:folderPath]) return;
   NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
   NSMutableDictionary<NSString *, TCNDataCenter *> *allDataCenter = [[NSMutableDictionary alloc]init];
@@ -226,6 +255,49 @@ static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
   [resultArr insertObject:preferentialDataCenter atIndex:0];
   self.dataCenters = [resultArr copy];
   [self saveDataCenterPriority];
+}
+
+#pragma mark - 响应广播的方法
+
+- (void)applicationDidBecomeActive {
+  [self loadConfigurationFromServer];
+}
+
+#pragma mark - set and get
+
+- (NSString *)cachePath {
+  if (!_cachePath) {
+    BOOL success = NO;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"tcnrequest"];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"dataCenters"];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:[self.configureURLString md5]];
+    NSFileManager* manager = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
+
+    if (!isDirExist) {
+      BOOL success = [manager createDirectoryAtPath:documentsDirectory
+                        withIntermediateDirectories:YES
+                                         attributes:nil
+                                              error:nil];
+#ifdef DEBUG
+      NSAssert(success, @"创建存放dataCenter数据文件夹失败");
+#endif
+    } else {
+      success = isDir;
+#ifdef DEBUG
+      NSAssert(isDir, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
+#endif
+    }
+    
+    if (success) {
+      _cachePath = [documentsDirectory copy];
+    }
+  }
+  
+  return _cachePath;
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "TCNAutoDataCenterStopErrorType.h"
 #import "TCNDataCenter.h"
 #import "TCNDataCenterManager.h"
+#import "TCNDataCenterManagerConfigure.h"
 #import "TCNDataCenterMatchedURLItem.h"
 #import "TCNRequest.h"
 #import "TCNRequestError.h"

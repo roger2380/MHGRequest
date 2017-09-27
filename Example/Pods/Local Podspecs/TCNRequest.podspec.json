@@ -56,6 +56,9 @@
         ],
         "TCNDeviceInfo": [
           "~> 0.0.03"
+        ],
+        "TCNDataEncoding": [
+          "~> 0.0.5"
         ]
       }
     },

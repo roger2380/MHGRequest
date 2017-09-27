@@ -29,16 +29,12 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
   [self.sendBtn setBackgroundColor:[UIColor redColor]];
   [self.sendBtn addTarget:self action:@selector(clickSendBtn) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.sendBtn];
-  
-  NSString *dataCenterConfigurationURL = @"http://tcconfig.1kxun.com/api/configurations/manga_web_lines_conf.json";
-  [self loadAutoDataCenterManagerWithConfigurationURL:dataCenterConfigurationURL];
 }
 
 - (void)clickSendBtn {
 //  [self adTrackRequestTest];
 //  [self qxBaseRequest];
   [self autoDataCenterRequest];
-//  [self testAutoDataCenterManagerWithURL:@"http://manga.1kxun.mobi/api/home/getNewList"];
 }
 
 - (void)qxBaseRequest {
@@ -142,42 +138,6 @@ constructingBodyWithBlock:dataBlock
        progress:NULL
         success:successBlock
         failure:failureBlock];
-}
-
-- (void)loadAutoDataCenterManagerWithConfigurationURL:(NSString *)url {
-  [[TCNDataCenterManager defaultManager] loadConfigurationWithURL:url
-                                               currentAccessToken:@"sadadscsx54555774"];
-}
-
-- (void)testAutoDataCenterManagerWithURL:(NSString *)url {
-  TCNAutoDataCenterManager *manager = [TCNAutoDataCenterManager manager];
-  NSArray<TCNDataCenterMatchedURLItem *> * resultURLs = [[TCNDataCenterManager defaultManager] urlsMatchedWithOriginURL:url];
-  TCNAutoDataCenterSuccessBlock successBlock = ^void(id  _Nullable responseObject) {
-    NSLog(@"-------------------");
-    NSLog(@"请求成功");
-    NSLog(@"原始地址:%@", url);
-    for (TCNDataCenterMatchedURLItem *result in resultURLs) {
-      NSLog(@"转换后的地址:%@", result.matchedURL);
-    }
-    NSLog(@"-------------------");
-  };
-  TCNAutoDataCenterFailureBlock failureBlock = ^void(NSError * _Nonnull error) {
-    NSLog(@"-------------------");
-    NSLog(@"请求失败");
-    NSLog(@"原始地址:%@", url);
-    for (TCNDataCenterMatchedURLItem *result in resultURLs) {
-      NSLog(@"转换后的地址:%@", result.matchedURL);
-    }
-    NSLog(@"失败原因:%@", error);
-    NSLog(@"-------------------");
-  };
-  
-  NSURLSessionDataTask * task = [manager autoDataCenterGET:url
-                                                parameters:nil
-                                                   success:successBlock
-                                                   failure:failureBlock];
-  
-//  [task cancel];
 }
 
 @end
