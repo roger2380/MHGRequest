@@ -278,10 +278,10 @@ static TCNDataCenterManager *shareManager = nil;
     BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
 
     if (!isDirExist) {
-      BOOL success = [manager createDirectoryAtPath:documentsDirectory
-                        withIntermediateDirectories:YES
-                                         attributes:nil
-                                              error:nil];
+      success = [manager createDirectoryAtPath:documentsDirectory
+                   withIntermediateDirectories:YES
+                                    attributes:nil
+                                         error:nil];
 #ifdef DEBUG
       NSAssert(success, @"创建存放dataCenter数据文件夹失败");
 #endif
