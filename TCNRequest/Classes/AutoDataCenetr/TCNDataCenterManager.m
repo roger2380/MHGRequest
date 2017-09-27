@@ -14,6 +14,8 @@
 #import <TCNDataEncoding/TCNNSString+UrlEncode.h>
 
 static NSString *TCNDataCenterManagerPriorityUserdefaultsKey = @"com.TCNRequest.DataCenterPriorityUserdefaultsKey";
+static NSString *FirstFolderName = @"tcnrequest";
+static NSString *SecondFolderName = @"dataCenters";
 static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
 
 static TCNDataCenterManager *shareManager = nil;
@@ -270,8 +272,8 @@ static TCNDataCenterManager *shareManager = nil;
     BOOL success = NO;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"tcnrequest"];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:@"dataCenters"];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:FirstFolderName];
+    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:SecondFolderName];
     documentsDirectory = [documentsDirectory stringByAppendingPathComponent:[self.configureURLString md5]];
     NSFileManager* manager = [NSFileManager defaultManager];
     BOOL isDir = NO;
