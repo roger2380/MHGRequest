@@ -38,12 +38,9 @@ PODS:
     - RegexKitLite (~> 4.0)
     - TCNDataEncoding (~> 0.0.5)
     - TCNDeviceInfo (~> 0.0.03)
-    - TCNRequest/Error
   - TCNRequest/Core (0.3.01):
     - TCNRequest/AutoDataCenetr
-    - TCNRequest/Error
     - TCNRequest/RequestSerialization
-  - TCNRequest/Error (0.3.01)
   - TCNRequest/RequestSerialization (0.3.01):
     - AFNetworking (~> 3.1.0)
     - TCNDataEncoding (~> 0.0.5)
@@ -61,7 +58,7 @@ SPEC CHECKSUMS:
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   TCNDataEncoding: ce0460a29ba464b4908e9e993b8cf4322fb24ba3
   TCNDeviceInfo: 1508619be470ab1d0ca7b855f393e91444ec36cb
-  TCNRequest: dcacc53e16d3cc8617ad265ca334e3168f8c11a9
+  TCNRequest: 718eef768d6e34eefe36fe20920d0b47ab75da2f
 
 PODFILE CHECKSUM: e2255d52a355647dcbab54db2364a82aeae4924f
 

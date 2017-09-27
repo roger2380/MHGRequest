@@ -38,18 +38,12 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files = 'TCNRequest/Classes/TCNRequest.h'
-    core.dependency 'TCNRequest/Error'
     core.dependency 'TCNRequest/AutoDataCenetr'
     core.dependency 'TCNRequest/RequestSerialization'
   end
 
-  s.subspec 'Error' do |error|
-    error.source_files = 'TCNRequest/Classes/Error/**/*'
-  end
-
   s.subspec 'AutoDataCenetr' do |autoDataCenetr|
     autoDataCenetr.source_files = 'TCNRequest/Classes/AutoDataCenetr/**/*'
-    autoDataCenetr.dependency 'TCNRequest/Error'
     autoDataCenetr.dependency 'AFNetworking', '~> 3.1.0'
     autoDataCenetr.dependency 'RegexKitLite', '~> 4.0'
     autoDataCenetr.dependency 'TCNDeviceInfo', '~> 0.0.03'

@@ -26,9 +26,6 @@
       "name": "Core",
       "source_files": "TCNRequest/Classes/TCNRequest.h",
       "dependencies": {
-        "TCNRequest/Error": [
-
-        ],
         "TCNRequest/AutoDataCenetr": [
 
         ],
@@ -38,16 +35,9 @@
       }
     },
     {
-      "name": "Error",
-      "source_files": "TCNRequest/Classes/Error/**/*"
-    },
-    {
       "name": "AutoDataCenetr",
       "source_files": "TCNRequest/Classes/AutoDataCenetr/**/*",
       "dependencies": {
-        "TCNRequest/Error": [
-
-        ],
         "AFNetworking": [
           "~> 3.1.0"
         ],
