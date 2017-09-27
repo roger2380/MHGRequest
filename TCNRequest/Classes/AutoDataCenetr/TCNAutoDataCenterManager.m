@@ -45,15 +45,6 @@ NS_ASSUME_NONNULL_END
   [TCNDataCenterManager initializationWithConfig:dataCenterManagerConfig];
 }
 
-- (instancetype)initWithBaseURL:(NSURL *)url sessionConfiguration:(NSURLSessionConfiguration *)configuration {
-  if (self = [super initWithBaseURL:url sessionConfiguration:configuration]) {
-    TCNAutoDataCenterStopErrorType *type = [[TCNAutoDataCenterStopErrorType alloc]initWithErrorDomain:TCNRequestErrorDomain
-                                                                                errorCode:TCNRequestErrorCodeBadServerResponse];
-    self.acceptableErrorType = @[type];
-  }
-  return self;
-}
-
 - (nullable NSURLSessionDataTask *)autoDataCenterGET:(nonnull NSString *)URLString
                                           parameters:(nullable id)parameters
                                              success:(nullable void (^)(id _Nullable responseObject))success

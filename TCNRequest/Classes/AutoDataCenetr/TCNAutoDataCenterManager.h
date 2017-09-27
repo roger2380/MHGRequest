@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
  停止切换线路的错误类型。
  调用方可以设置一些错误类型。
  出现这些错误时，将停止线路切换，执行错误处理的block。
+ 
+ 默认值为nil
  */
 @property (nullable, nonatomic, strong) NSArray<TCNAutoDataCenterStopErrorType *> *acceptableErrorType;
 
