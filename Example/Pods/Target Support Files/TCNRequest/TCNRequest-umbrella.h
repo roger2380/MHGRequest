@@ -25,6 +25,7 @@
 #import "TCNHTTPZhanqiTrackRequestSerialization.h"
 #import "TCNPOSTDataRequestSerialization.h"
 #import "TCNRSARequestSerialization.h"
+#import "TCNJSONAPIResultCheckResponseSerializer.h"
 
 FOUNDATION_EXPORT double TCNRequestVersionNumber;
 FOUNDATION_EXPORT const unsigned char TCNRequestVersionString[];

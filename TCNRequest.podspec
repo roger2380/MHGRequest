@@ -40,6 +40,7 @@ Pod::Spec.new do |s|
     core.source_files = 'TCNRequest/Classes/TCNRequest.h'
     core.dependency 'TCNRequest/AutoDataCenetr'
     core.dependency 'TCNRequest/RequestSerialization'
+    core.dependency 'TCNRequest/ResponseSerialization'
   end
 
   s.subspec 'AutoDataCenetr' do |autoDataCenetr|
@@ -55,6 +56,11 @@ Pod::Spec.new do |s|
     requestSerialization.dependency 'AFNetworking', '~> 3.1.0'
     requestSerialization.dependency 'TCNDeviceInfo', '~> 0.0.03'
     requestSerialization.dependency 'TCNDataEncoding', '~> 0.0.5'
+  end
+
+  s.subspec 'ResponseSerialization' do |responseSerialization|
+    responseSerialization.source_files = 'TCNRequest/Classes/ResponseSerialization/**/*'
+    responseSerialization.dependency 'AFNetworking', '~> 3.1.0'
   end
   
   # s.resource_bundles = {

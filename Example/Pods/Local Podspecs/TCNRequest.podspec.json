@@ -31,6 +31,9 @@
         ],
         "TCNRequest/RequestSerialization": [
 
+        ],
+        "TCNRequest/ResponseSerialization": [
+
         ]
       }
     },
@@ -64,6 +67,15 @@
         ],
         "TCNDataEncoding": [
           "~> 0.0.5"
+        ]
+      }
+    },
+    {
+      "name": "ResponseSerialization",
+      "source_files": "TCNRequest/Classes/ResponseSerialization/**/*",
+      "dependencies": {
+        "AFNetworking": [
+          "~> 3.1.0"
         ]
       }
     }
