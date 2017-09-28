@@ -34,7 +34,8 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 - (void)clickSendBtn {
 //  [self adTrackRequestTest];
 //  [self qxBaseRequest];
-  [self autoDataCenterRequest];
+//  [self autoDataCenterRequest];
+  [self apiResultCheckTest];
 }
 
 - (void)qxBaseRequest {
@@ -138,6 +139,23 @@ constructingBodyWithBlock:dataBlock
        progress:NULL
         success:successBlock
         failure:failureBlock];
+}
+
+- (void)apiResultCheckTest {
+  AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+  manager.requestSerializer = [TCNHTTPRequestSerialization serializer];
+  manager.responseSerializer = [TCNJSONAPIResultCheckResponseSerializer serializer];
+  AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSLog(@"%@", responseObject);
+  };
+  AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", error);
+  };
+  [manager GET:@"https://manga.1kxun.mobi/api/home/getNewList"
+    parameters:nil
+      progress:NULL
+       success:successBlock
+       failure:failureBlock];
 }
 
 @end
