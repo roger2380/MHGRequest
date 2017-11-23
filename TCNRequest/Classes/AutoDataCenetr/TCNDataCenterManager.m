@@ -189,18 +189,21 @@ static TCNDataCenterManager *shareManager = nil;
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  __weak typeof(self) weakSelf = self;
   [manager autoDataCenterGET:resultURLString
                   parameters:nil
                      success:^(id  _Nullable responseObject) {
-                       self.isLoadingFromServer = NO;
+                       if (!weakSelf) return;
+                       __strong typeof(weakSelf) strongSelf = weakSelf;
+                       strongSelf.isLoadingFromServer = NO;
                        if (![responseObject isKindOfClass:[NSDictionary class]]) return;
                        NSString *status = [responseObject objectForKey:@"status"];
                        if (![status isKindOfClass:[NSString class]]) return;
                        if (![status isEqualToString:@"success"]) return;
                        NSArray<NSDictionary *> *arr = [responseObject objectForKey:@"data"];
                        if (![arr isKindOfClass:[NSArray class]]) return;
-                       [self loadConfigurationWithArray:arr];
-                       self.lastLoadFromServerSuccessTime = [NSDate date].timeIntervalSince1970;
+                       [strongSelf loadConfigurationWithArray:arr];
+                       strongSelf.lastLoadFromServerSuccessTime = [NSDate date].timeIntervalSince1970;
                      }
                      failure:nil];
 }
