@@ -18,19 +18,24 @@ static NSString *FirstFolderName = @"tcnrequest";
 static NSString *SecondFolderName = @"dataCenters";
 static NSString *TCNDataCenterSaveFileExtension = @"dataCenter";
 
+static NSString *TCNDataCenterManagerDataCentersLock = @"TCNDataCenterManagerDataCentersLock";
+
 static TCNDataCenterManager *shareManager = nil;
 
-@interface TCNDataCenterManager()
+@interface TCNDataCenterManager() {
+  NSArray<TCNDataCenter *> *_dataCenters;
+}
 
 @property (nonatomic, strong) NSArray<TCNDataCenter *> *dataCenters;
+@property (nonatomic, readonly, strong) NSRecursiveLock *dataCentersLock;
 
-@property (nonatomic, copy) TCNDCMCGetTokenBlock getTokenBlock;
+@property (nonatomic, readonly, copy) TCNDCMCGetTokenBlock getTokenBlock;
 
-@property (nonatomic, copy) NSString *configureURLString;
+@property (nonatomic, readonly, copy) NSString *configureURLString;
 
-@property (nonatomic, assign) NSTimeInterval interval;
+@property (nonatomic, readonly, assign) NSTimeInterval interval;
 
-@property (nonatomic, copy) NSString *cachePath;
+@property (nonatomic, readonly, copy) NSString *cachePath;
 
 @property (nonatomic, assign) NSTimeInterval lastLoadFromServerSuccessTime;
 
@@ -39,6 +44,7 @@ static TCNDataCenterManager *shareManager = nil;
 @end
 
 @implementation TCNDataCenterManager
+@dynamic dataCenters;
 
 #pragma mark - 类方法
 
@@ -64,11 +70,70 @@ static TCNDataCenterManager *shareManager = nil;
 #pragma mark - 实例方法
 
 - (id)initWithConfig:(TCNDataCenterManagerConfigure *)config {
+  BOOL success = NO;
+  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc] init];
+  NSString *documentsDirectory = nil;
+  
+  NSFileManager *manager = [NSFileManager defaultManager];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  documentsDirectory = [paths objectAtIndex:0];
+  documentsDirectory = [documentsDirectory stringByAppendingPathComponent:FirstFolderName];
+  documentsDirectory = [documentsDirectory stringByAppendingPathComponent:SecondFolderName];
+  documentsDirectory = [documentsDirectory stringByAppendingPathComponent:[config.configureURLString md5]];
+  BOOL isDir = NO;
+  BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
+  
+  if (!isDirExist) {
+    success = [manager createDirectoryAtPath:documentsDirectory
+                 withIntermediateDirectories:YES
+                                  attributes:nil
+                                       error:nil];
+#ifdef DEBUG
+    NSAssert(success, @"创建存放dataCenter数据文件夹失败");
+#endif
+  } else if (isDir) {
+    success = YES;
+    
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:documentsDirectory] objectEnumerator];
+    NSMutableDictionary<NSString *, TCNDataCenter *> *allDataCenter = [[NSMutableDictionary alloc] init];
+    NSString* fileName;
+    
+    while ((fileName = [childFilesEnumerator nextObject]) != nil) {
+      if (![[fileName pathExtension] isEqualToString:TCNDataCenterSaveFileExtension]) continue;
+      NSString* fileAbsolutePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+      if (![manager fileExistsAtPath:fileAbsolutePath]) continue;
+      TCNDataCenter *dataCenter = [NSKeyedUnarchiver unarchiveObjectWithFile:fileAbsolutePath];
+      if (![dataCenter isKindOfClass:[TCNDataCenter class]]) continue;
+      [allDataCenter setObject:dataCenter forKey:dataCenter.name];
+    }
+    
+    NSArray<NSString *> *dataCenterPriorityArr = [[NSUserDefaults standardUserDefaults] objectForKey:TCNDataCenterManagerPriorityUserdefaultsKey];
+    if ([dataCenterPriorityArr isKindOfClass:[NSArray class]] && dataCenterPriorityArr.count > 0) {
+      for (NSString *dataCenterName in dataCenterPriorityArr) {
+        TCNDataCenter *dataCenter = [allDataCenter objectForKey:dataCenterName];
+        if (!dataCenter) continue;
+        [resultArr addObject:dataCenter];
+      }
+    } else {
+      [resultArr addObjectsFromArray:allDataCenter.allValues];
+    }
+  } else {
+    success = NO;
+#ifdef DEBUG
+    NSAssert(NO, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
+#endif
+  }
+  
+  if (!success || !documentsDirectory || documentsDirectory.length == 0) return nil;
+  
   if (self = [super init]) {
     _getTokenBlock = [config.getTokenBlock copy];
     _configureURLString = [config.configureURLString copy];
     _interval = config.interval;
-    [self loadConfigurationFromCache];
+    _cachePath = [documentsDirectory copy];
+    _dataCenters = [resultArr copy];
+    _dataCentersLock = [[NSRecursiveLock alloc] init];
+    _dataCentersLock.name = TCNDataCenterManagerDataCentersLock;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidBecomeActive)
@@ -197,38 +262,6 @@ static TCNDataCenterManager *shareManager = nil;
                                            forKey:TCNDataCenterManagerPriorityUserdefaultsKey];
 }
 
-- (void)loadConfigurationFromCache {
-  NSString *folderPath = self.cachePath;
-  if (!folderPath) return;
-  NSFileManager* manager = [NSFileManager defaultManager];
-  if (![manager fileExistsAtPath:folderPath]) return;
-  NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
-  NSMutableDictionary<NSString *, TCNDataCenter *> *allDataCenter = [[NSMutableDictionary alloc]init];
-  NSString* fileName;
-  while ((fileName = [childFilesEnumerator nextObject]) != nil) {
-    if (![[fileName pathExtension] isEqualToString:TCNDataCenterSaveFileExtension]) continue;
-    NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-    if (![manager fileExistsAtPath:fileAbsolutePath]) continue;
-    TCNDataCenter *dataCenter = [NSKeyedUnarchiver unarchiveObjectWithFile:fileAbsolutePath];
-    if (!dataCenter) continue;
-    [allDataCenter setObject:dataCenter forKey:dataCenter.name];
-  }
-  NSArray<NSString *> *dataCenterPriorityArr = [[NSUserDefaults standardUserDefaults]objectForKey:TCNDataCenterManagerPriorityUserdefaultsKey];
-  NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc]initWithCapacity:allDataCenter.count];
-  if ([dataCenterPriorityArr isKindOfClass:[NSArray class]] && dataCenterPriorityArr.count > 0) {
-    for (NSString *dataCenterName in dataCenterPriorityArr) {
-      TCNDataCenter *dataCenter = [allDataCenter objectForKey:dataCenterName];
-      if (!dataCenter) continue;
-      [resultArr addObject:dataCenter];
-    }
-  } else {
-    for (TCNDataCenter *dataCenter in allDataCenter.allValues) {
-      [resultArr addObject:dataCenter];
-    }
-  }
-  self.dataCenters = [resultArr copy];
-}
-
 - (NSArray<TCNDataCenterMatchedURLItem *> *)urlsMatchedWithOriginURL:(NSString *)originUrl {
   NSMutableArray<TCNDataCenterMatchedURLItem *> *results = [[NSMutableArray alloc] init];
   for (TCNDataCenter *dataCenetr in self.dataCenters) {
@@ -267,39 +300,20 @@ static TCNDataCenterManager *shareManager = nil;
 
 #pragma mark - set and get
 
-- (NSString *)cachePath {
-  if (!_cachePath) {
-    BOOL success = NO;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:FirstFolderName];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:SecondFolderName];
-    documentsDirectory = [documentsDirectory stringByAppendingPathComponent:[self.configureURLString md5]];
-    NSFileManager* manager = [NSFileManager defaultManager];
-    BOOL isDir = NO;
-    BOOL isDirExist = [manager fileExistsAtPath:documentsDirectory isDirectory:&isDir];
-
-    if (!isDirExist) {
-      success = [manager createDirectoryAtPath:documentsDirectory
-                   withIntermediateDirectories:YES
-                                    attributes:nil
-                                         error:nil];
-#ifdef DEBUG
-      NSAssert(success, @"创建存放dataCenter数据文件夹失败");
-#endif
-    } else {
-      success = isDir;
-#ifdef DEBUG
-      NSAssert(isDir, @"创建存放dataCenter数据的文件夹时,名字被某个文件占用了");
-#endif
-    }
-    
-    if (success) {
-      _cachePath = [documentsDirectory copy];
-    }
+- (void)setDataCenters:(NSArray<TCNDataCenter *> *)dataCenters {
+  [self.dataCentersLock lock];
+  if (_dataCenters != dataCenters) {
+    _dataCenters = dataCenters;
   }
-  
-  return _cachePath;
+  [self.dataCentersLock unlock];
+}
+
+- (NSArray<TCNDataCenter *> *)dataCenters {
+  NSArray<TCNDataCenter *> *tResult = nil;
+  [self.dataCentersLock lock];
+  tResult = _dataCenters;
+  [self.dataCentersLock unlock];
+  return tResult;
 }
 
 @end
