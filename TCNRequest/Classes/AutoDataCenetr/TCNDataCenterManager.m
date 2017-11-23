@@ -69,6 +69,10 @@ static TCNDataCenterManager *shareManager = nil;
 
 #pragma mark - 实例方法
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id)initWithConfig:(TCNDataCenterManagerConfigure *)config {
   BOOL success = NO;
   NSMutableArray<TCNDataCenter *> *resultArr = [[NSMutableArray alloc] init];
