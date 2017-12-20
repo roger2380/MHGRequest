@@ -112,7 +112,9 @@ NS_ASSUME_NONNULL_END
     TCNDataCenterMatchedURLItem *originItem = [[TCNDataCenterMatchedURLItem alloc]initWithDataCenterName:nil
                                                                                              originalURL:URLString
                                                                                               matchedURL:URLString];
-    allItems = @[originItem];
+    if (originItem) {
+      allItems = @[originItem];
+    }
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 过滤掉重复的URL
@@ -124,6 +126,24 @@ NS_ASSUME_NONNULL_END
     if ([matchedURLs containsObject:item.matchedURL]) continue;
     items = [items arrayByAddingObject:item];
     [matchedURLs addObject:item.matchedURL];
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 处理items为空的情况
+
+  if (items.count == 0) {
+    NSURLSessionDataTask *task = [self dataTaskWithHTTPMethod:method
+                                                    URLString:nil
+                                                   parameters:parameters
+                                               uploadProgress:nil
+                                             downloadProgress:nil
+                                                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                                                        success(responseObject);
+                                                      }
+                                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                        failure(error);
+                                                      }];
+    [task resume];
+    return task;
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   
