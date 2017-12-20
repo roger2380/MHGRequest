@@ -31,22 +31,22 @@ PODS:
   - TCNDataEncoding/UrlEncode (0.0.5)
   - TCNDeviceInfo (0.0.03):
     - TCNDataEncoding (~> 0.0.2)
-  - TCNRequest (0.3.05):
-    - TCNRequest/Core (= 0.3.05)
-  - TCNRequest/AutoDataCenetr (0.3.05):
+  - TCNRequest (0.3.06):
+    - TCNRequest/Core (= 0.3.06)
+  - TCNRequest/AutoDataCenetr (0.3.06):
     - AFNetworking (~> 3.1.0)
     - RegexKitLite (~> 4.0)
     - TCNDataEncoding (~> 0.0.5)
     - TCNDeviceInfo (~> 0.0.03)
-  - TCNRequest/Core (0.3.05):
+  - TCNRequest/Core (0.3.06):
     - TCNRequest/AutoDataCenetr
     - TCNRequest/RequestSerialization
     - TCNRequest/ResponseSerialization
-  - TCNRequest/RequestSerialization (0.3.05):
+  - TCNRequest/RequestSerialization (0.3.06):
     - AFNetworking (~> 3.1.0)
     - TCNDataEncoding (~> 0.0.5)
     - TCNDeviceInfo (~> 0.0.03)
-  - TCNRequest/ResponseSerialization (0.3.05):
+  - TCNRequest/ResponseSerialization (0.3.06):
     - AFNetworking (~> 3.1.0)
 
 DEPENDENCIES:
@@ -61,7 +61,7 @@ SPEC CHECKSUMS:
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   TCNDataEncoding: ce0460a29ba464b4908e9e993b8cf4322fb24ba3
   TCNDeviceInfo: 1508619be470ab1d0ca7b855f393e91444ec36cb
-  TCNRequest: 0de43a650f6aea8e81ee3d642f7de28fbe8e57a1
+  TCNRequest: fea40eb608f0a00da8276d25d6c5b0bb11a3cc11
 
 PODFILE CHECKSUM: e2255d52a355647dcbab54db2364a82aeae4924f
 
