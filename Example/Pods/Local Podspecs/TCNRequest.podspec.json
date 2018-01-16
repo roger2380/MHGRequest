@@ -12,7 +12,7 @@
     "周高举": "zgj@shtruecolor.com"
   },
   "source": {
-    "git": "ssh://git@git.1kxun.com:9922/ios/TCNRequest.git",
+    "git": "ssh://git@git.1kxun.com/ios/TCNRequest.git",
     "tag": "0.3.06"
   },
   "platforms": {

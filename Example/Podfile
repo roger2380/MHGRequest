@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'ssh://git@git.1kxun.com:9922/ios/CocoaPods-Specs.git'
+source 'ssh://git@git.1kxun.com/ios/CocoaPods-Specs.git'
 
 use_frameworks!
 platform :ios, '8.0'
