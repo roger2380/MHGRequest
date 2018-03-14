@@ -18,6 +18,7 @@
 #import <TCNRequest/TCNHTTPTrackRequestSerialization.h>
 #import <TCNRequest/TCNHTTPZhanqiTrackRequestSerialization.h>
 #import <TCNRequest/TCNPOSTDataRequestSerialization.h>
+#import <TCNRequest/TCNMangaNewTrackPostRequestSerialization.h>
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // 返回数据处理
 #import <TCNRequest/TCNJSONAPIResultCheckResponseSerializer.h>

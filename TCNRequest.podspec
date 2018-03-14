@@ -47,14 +47,14 @@ Pod::Spec.new do |s|
     autoDataCenetr.source_files = 'TCNRequest/Classes/AutoDataCenetr/**/*'
     autoDataCenetr.dependency 'AFNetworking', '~> 3.1.0'
     autoDataCenetr.dependency 'RegexKitLite', '~> 4.0'
-    autoDataCenetr.dependency 'TCNDeviceInfo', '~> 0.0.03'
+    autoDataCenetr.dependency 'TCNDeviceInfo', '>= 0.0.04'
     autoDataCenetr.dependency 'TCNDataEncoding', '~> 0.0.5'
   end
 
   s.subspec 'RequestSerialization' do |requestSerialization|
     requestSerialization.source_files = 'TCNRequest/Classes/RequestSerialization/**/*'
     requestSerialization.dependency 'AFNetworking', '~> 3.1.0'
-    requestSerialization.dependency 'TCNDeviceInfo', '~> 0.0.03'
+    requestSerialization.dependency 'TCNDeviceInfo', '>= 0.0.04'
     requestSerialization.dependency 'TCNDataEncoding', '~> 0.0.5'
   end
 

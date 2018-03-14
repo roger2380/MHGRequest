@@ -23,6 +23,7 @@
 #import "TCNHTTPRequestSerialization.h"
 #import "TCNHTTPTrackRequestSerialization.h"
 #import "TCNHTTPZhanqiTrackRequestSerialization.h"
+#import "TCNMangaNewTrackPostRequestSerialization.h"
 #import "TCNPOSTDataRequestSerialization.h"
 #import "TCNRSARequestSerialization.h"
 #import "TCNJSONAPIResultCheckResponseSerializer.h"

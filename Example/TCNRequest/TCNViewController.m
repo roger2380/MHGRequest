@@ -35,7 +35,8 @@ typedef void(^AFDataBlock)(id<AFMultipartFormData> _Nonnull);
 //  [self adTrackRequestTest];
 //  [self qxBaseRequest];
 //  [self autoDataCenterRequest];
-  [self apiResultCheckTest];
+//  [self apiResultCheckTest];
+  [self mangaNewTrackTest];
 }
 
 - (void)qxBaseRequest {
@@ -156,6 +157,23 @@ constructingBodyWithBlock:dataBlock
       progress:NULL
        success:successBlock
        failure:failureBlock];
+}
+
+- (void)mangaNewTrackTest {
+  AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+  manager.requestSerializer = [TCNMangaNewTrackPostRequestSerialization serializer];
+  manager.responseSerializer = [TCNJSONAPIResultCheckResponseSerializer serializer];
+  AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSLog(@"%@", responseObject);
+  };
+  AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    NSLog(@"%@", error);
+  };
+  [manager POST:@"https://api.en.dailymanga.mobi/api/track/activate"
+     parameters:nil
+       progress:nil
+        success:successBlock
+        failure:failureBlock];
 }
 
 @end
