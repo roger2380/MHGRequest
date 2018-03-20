@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TCNRequest'
-  s.version          = '0.3.07'
+  s.version          = '0.3.08'
   s.summary          = 'trueColor net base'
 
 # This description is used to generate tags and improve search results.
