@@ -161,15 +161,24 @@ constructingBodyWithBlock:dataBlock
 
 - (void)mangaNewTrackTest {
   AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-  manager.requestSerializer = [TCNMangaNewTrackPostRequestSerialization serializer];
-  manager.responseSerializer = [TCNJSONAPIResultCheckResponseSerializer serializer];
+  manager.requestSerializer = [TCNMangaNewTrackPostRequestSerialization serializerWithSignKey:@"2c98702fe305cfbf07f1f0365c20cc53"];
+//  manager.requestSerializer = [TCNMangaNewTrackPostRequestSerialization serializer];
+  
+  NSDictionary *parameters = @{@"from" : @"DetailActivity",    // 来自哪个页面，若不存在则用空表示，{后台:_background,返回:_back}
+                               @"current": @"HomeActivity",   // 当前所处页面
+                               @"to": @"CategoryActivity",    // 点击调往哪个页面，{返回:_back,退出:_exit,后台:_background}
+                               @"page_stay_time": @100,       // ms,当前页面的停留时长
+                               @"extra_data": @{              // 页面自定义事件
+                                   @"total_app_time": @100,
+                                 }// ms,退出应用时，app的总共使用时长（仅限退出或者切后台时候传）
+                               };
   AFSuccessBlock successBlock = ^void(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     NSLog(@"%@", responseObject);
   };
   AFFailureBlock failureBlock = ^void(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     NSLog(@"%@", error);
   };
-  [manager POST:@"https://api.en.dailymanga.mobi/api/track/activate"
+  [manager POST:@"https://api.en.dailymanga.mobi/api/track/screenTrack"
      parameters:nil
        progress:nil
         success:successBlock
