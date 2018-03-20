@@ -1,6 +1,6 @@
 {
   "name": "TCNRequest",
-  "version": "0.3.06",
+  "version": "0.3.08",
   "summary": "trueColor net base",
   "description": "公司内部iOS开发使用的网络基础库,包括各种不同形式的网络请求.",
   "homepage": "http://git.1kxun.com/ios/TCNRequest",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "ssh://git@git.1kxun.com/ios/TCNRequest.git",
-    "tag": "0.3.06"
+    "tag": "0.3.08"
   },
   "platforms": {
     "ios": "8.0"
