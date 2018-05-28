@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'TCNRequest'
   s.version          = '0.3.08'
-  s.summary          = 'trueColor net base'
+  s.summary          = '漫画堂内部请求'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 公司内部iOS开发使用的网络基础库,包括各种不同形式的网络请求.
                        DESC
 
-  s.homepage         = 'http://git.1kxun.com/ios/TCNRequest'
+  s.homepage         = 'https://github.com/roger2380/MHGRequest.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '周高举' => 'zgj@shtruecolor.com' }
-  s.source           = { :git => 'ssh://git@git.1kxun.com/ios/TCNRequest.git', :tag => s.version.to_s }
+  s.author           = { 'wuxibiao' => 'roger2380@163.com' }
+  s.source           = { :git => 'https://github.com/roger2380/MHGRequest.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
